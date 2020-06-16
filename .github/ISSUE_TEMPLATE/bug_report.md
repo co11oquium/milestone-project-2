@@ -16,4 +16,6 @@ about: Create a report to help us improve
 A clear and concise description of what the bug is.
 
 **Environment:**
-- OS
+- OS: <!-- e.g. macOS, Ubuntu 18.04, Windows 10 -->
+- Vim/Neovim version: <!-- first two lines of `:version` command output -->
+- This plugin version: <!-- output of `git rev-parse origin/master` comman
