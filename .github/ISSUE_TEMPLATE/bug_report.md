@@ -22,4 +22,10 @@ A clear and concise description of what the bug is.
 - I'm using universal-ctags: <!-- exuberant-ctags is unsupported -->
     - Ctags version: <!-- output of `ctags --version` command -->
 - I'm using some LSP client:
-    - Related Vim LSP c
+    - Related Vim LSP client: <!-- ale,coc,lcn,nvim_lsp,vim_lsc,vim_lsp -->
+    - The Vim LSP client version:
+    - Have you tried updated to the latest version of this LSP client: Yes/No
+
+**Vista info**
+
+<!-- Paste the output of :Vista info here, or try
