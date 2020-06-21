@@ -28,4 +28,12 @@ A clear and concise description of what the bug is.
 
 **Vista info**
 
-<!-- Paste the output of :Vista info here, or try
+<!-- Paste the output of :Vista info here, or try :Vista info+. -->
+
+```
+```
+
+**Steps to reproduce given the above info**
+<!-- If this issue is related to ctags, please also provide the source file you run Vista on. -->
+
+source file f
