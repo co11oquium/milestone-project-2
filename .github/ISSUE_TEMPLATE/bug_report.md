@@ -36,4 +36,8 @@ A clear and concise description of what the bug is.
 **Steps to reproduce given the above info**
 <!-- If this issue is related to ctags, please also provide the source file you run Vista on. -->
 
-source file f
+source file for reproduce the ctags issue:
+
+<!-- If this issue is related to some LSP plugin, please also provide the minimal vimrc to help reproduce -->
+
+minimal vimrc (neccessary when this issue is about some Vim LSP
