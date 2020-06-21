@@ -40,4 +40,20 @@ source file for reproduce the ctags issue:
 
 <!-- If this issue is related to some LSP plugin, please also provide the minimal vimrc to help reproduce -->
 
-minimal vimrc (neccessary when this issue is about some Vim LSP
+minimal vimrc (neccessary when this issue is about some Vim LSP client):
+
+```vim
+set nocompatible
+set runtimepath^=/path/to/vista.vim
+syntax on
+filetype plugin indent on
+```
+
+<!-- short descriptions of actions, which lead towards the issue -->
+1.
+2.
+3.
+4.
+
+**Expected behavior**
+A clear and 
