@@ -56,4 +56,10 @@ filetype plugin indent on
 4.
 
 **Expected behavior**
-A clear and 
+A clear and concise description of what you expected to happen.
+
+**Actual behavior**
+A clear and concise description of what actually happens.
+
+**Screenshot or gif** (if possible)
+If applicable, add screenshots to help exp
