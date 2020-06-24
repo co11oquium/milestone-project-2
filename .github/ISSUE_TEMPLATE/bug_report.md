@@ -62,4 +62,4 @@ A clear and concise description of what you expected to happen.
 A clear and concise description of what actually happens.
 
 **Screenshot or gif** (if possible)
-If applicable, add screenshots to help exp
+If applicable, add screenshots to help explain your problem.
