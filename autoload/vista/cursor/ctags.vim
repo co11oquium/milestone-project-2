@@ -56,3 +56,15 @@ function! vista#cursor#ctags#GetInfo() abort
   if left_parenthsis_idx > -1
     " Ignore the visibility symbol, e.g., +test2()
     let tag = s:RemoveVisibility(trimmed_line[0 : left_parenthsis_idx-1])
+    return [tag, source_line]
+  endif
+
+  let tag = s:MatchTag(trimmed_line)
+  if empty(tag)
+    let tag = raw_cur_line[:last_semicoln_idx-1]
+  endif
+
+  let tag = s:RemoveVisibility(vista#util#Trim(tag))
+
+  return [tag, source_line]
+endfunction
