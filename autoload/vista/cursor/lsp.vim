@@ -28,4 +28,16 @@ function! s:GetInfoFromLSPAndExtension() abort
     endif
     " The first two lines are for displaying fpath. the lnum is 1-based, while
     " idex is 0-based.
-    " So it's line('.') - 3 inste
+    " So it's line('.') - 3 instead of line('.').
+    let tag = vista#extension#{g:vista.provider}#GetHeader(line('.')-3)
+    if tag is# v:null
+      return v:null
+    endif
+    return tag
+  endif
+
+  return v:null
+endfunction
+
+function! vista#cursor#lsp#GetInfo() abort
+  let raw_
