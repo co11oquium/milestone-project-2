@@ -14,4 +14,12 @@ function! s:GetInfoFromLSPAndExtension() abort
       return g:vista.vlnum2tagname[line('.')]
     else
       let items = split(raw_cur_line)
-   
+      if g:vista#renderer#enable_icon
+        return join(items[1:-2], ' ')
+      else
+        return join(items[:-2], ' ')
+      endif
+    endif
+  elseif g:vista.provider ==# 'nvim_lsp'
+    return substitute(raw_cur_line, '\v.*\s(.*):.*', '\1', '')
+  elseif g
