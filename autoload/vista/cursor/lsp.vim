@@ -6,4 +6,12 @@ function! s:GetInfoFromLSPAndExtension() abort
   let raw_cur_line = getline('.')
 
   " TODO use range info of LSP symbols?
-  if g:vista.provider ==# 'co
+  if g:vista.provider ==# 'coc'
+    if !has_key(g:vista, 'vlnum2tagname')
+      return v:null
+    endif
+    if has_key(g:vista.vlnum2tagname, line('.'))
+      return g:vista.vlnum2tagname[line('.')]
+    else
+      let items = split(raw_cur_line)
+   
