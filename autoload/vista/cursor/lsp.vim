@@ -22,4 +22,10 @@ function! s:GetInfoFromLSPAndExtension() abort
     endif
   elseif g:vista.provider ==# 'nvim_lsp'
     return substitute(raw_cur_line, '\v.*\s(.*):.*', '\1', '')
-  elseif g
+  elseif g:vista.provider ==# 'markdown' || g:vista.provider ==# 'rst'
+    if line('.') < 3
+      return v:null
+    endif
+    " The first two lines are for displaying fpath. the lnum is 1-based, while
+    " idex is 0-based.
+    " So it's line('.') - 3 inste
