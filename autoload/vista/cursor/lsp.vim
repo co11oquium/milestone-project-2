@@ -48,4 +48,14 @@ function! vista#cursor#lsp#GetInfo() abort
 
   " tag like s:StopCursorTimer has `:`, so we can't simply use split(tag, ':')
   let last_semicoln_idx = strridx(raw_cur_line, ':')
-  let ln
+  let lnum = raw_cur_line[last_semicoln_idx+1:]
+
+  let source_line = g:vista.source.line_trimmed(lnum)
+  if empty(source_line)
+    return [v:null, v:null]
+  endif
+
+  let tag = s:GetInfoFromLSPAndExtension()
+
+  return [tag, source_line]
+endfunction
