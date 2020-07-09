@@ -27,4 +27,18 @@ function! s:GetAvaliableExecutives() abort
 
   if exists('*lsp#get_whitelisted_servers')
     call add(avaliable, 'vim_lsp')
-  
+  endif
+
+  return avaliable
+endfunction
+
+function! s:GetGlobalVariables() abort
+  let variable_list = []
+
+  for key in keys(g:)
+    if key =~# '^vista'
+      call add(variable_list, key)
+    endif
+  endfor
+
+  " Ignore the variables of ty
