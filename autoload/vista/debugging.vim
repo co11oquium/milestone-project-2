@@ -17,4 +17,14 @@ function! s:GetAvaliableExecutives() abort
     call add(avaliable, 'ctags')
   endif
 
-  if exists('*LanguageClient#textDocu
+  if exists('*LanguageClient#textDocument_documentSymbol')
+    call add(avaliable, 'lcn')
+  endif
+
+  if exists('*lsc#server#userCall')
+    call add(avaliable, 'vim_lsc')
+  endif
+
+  if exists('*lsp#get_whitelisted_servers')
+    call add(avaliable, 'vim_lsp')
+  
