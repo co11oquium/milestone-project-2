@@ -5,4 +5,16 @@
 function! s:GetAvaliableExecutives() abort
   let avaliable = []
 
-  if exists('*ale#lsp_linter#
+  if exists('*ale#lsp_linter#SendRequest')
+    call add(avaliable, 'ale')
+  endif
+
+  if exists('*CocAction')
+    call add(avaliable, 'coc')
+  endif
+
+  if executable('ctags')
+    call add(avaliable, 'ctags')
+  endif
+
+  if exists('*LanguageClient#textDocu
