@@ -223,3 +223,59 @@ function! vista#cursor#ShowTagFor(lnum) abort
   if empty(s:vlnum)
     return
   endif
+
+  let tag = get(found, 'name', v:null)
+  call vista#highlight#Add(s:vlnum, v:true, tag)
+endfunction
+
+function! vista#cursor#ShowTag() abort
+  if !s:HasVlnum()
+    return
+  endif
+
+  let s:vlnum = vista#util#BinarySearch(g:vista.raw, line('.'), 'line', 'vlnum')
+
+  if empty(s:vlnum)
+    return
+  endif
+
+  let winnr = g:vista.winnr()
+
+  if winnr() != winnr
+    execute winnr.'wincmd w'
+  endif
+
+  call cursor(s:vlnum, 1)
+  normal! zz
+endfunction
+
+" Extract the line number from last section of cursor line in the vista window
+function! s:GetTrailingLnum() abort
+  return str2nr(matchstr(getline('.'), '\d\+$'))
+endfunction
+
+function! vista#cursor#TogglePreview() abort
+  if get(g:vista, 'floating_visible', v:false)
+        \ || get(g:vista, 'popup_visible', v:false)
+    call vista#win#CloseFloating()
+    return
+  endif
+
+  let [tag, source_line] = s:GetInfoUnderCursor()
+
+  if empty(tag) || empty(source_line)
+    echo "\r"
+    return
+  endif
+
+  let lnum = s:GetTrailingLnum()
+
+  call vista#win#FloatingDisplay(lnum, tag)
+endfunction
+
+function! vista#cursor#TryInitialRun() abort
+  if exists('g:__vista_initial_run_find_nearest_method')
+    call vista#cursor#FindNearestMethodOrFunction()
+    unlet g:__vista_initial_run_find_nearest_method
+  endif
+endfunction
