@@ -50,4 +50,9 @@ function! s:GetGlobalVariables() abort
 endfunction
 
 function! vista#debugging#Info() abort
-  let avaliable_executives = string(s:GetAvaliableExecutiv
+  let avaliable_executives = string(s:GetAvaliableExecutives())
+  let global_variables = s:GetGlobalVariables()
+
+  echohl Type   | echo '    Current FileType: ' | echohl NONE
+  echohl Normal | echon &filetype               | echohl NONE
+  echohl Type   | echo 'Avaliable Executives: ' | echohl NO
