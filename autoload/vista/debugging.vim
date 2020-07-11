@@ -41,4 +41,13 @@ function! s:GetGlobalVariables() abort
     endif
   endfor
 
-  " Ignore the variables of ty
+  " Ignore the variables of types
+  call filter(variable_list, 'v:val !~# ''vista#types#''')
+
+  call sort(variable_list)
+
+  return variable_list
+endfunction
+
+function! vista#debugging#Info() abort
+  let avaliable_executives = string(s:GetAvaliableExecutiv
