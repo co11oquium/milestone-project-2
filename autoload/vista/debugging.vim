@@ -55,4 +55,8 @@ function! vista#debugging#Info() abort
 
   echohl Type   | echo '    Current FileType: ' | echohl NONE
   echohl Normal | echon &filetype               | echohl NONE
-  echohl Type   | echo 'Avaliable Executives: ' | echohl NO
+  echohl Type   | echo 'Avaliable Executives: ' | echohl NONE
+  echohl Normal | echon avaliable_executives    | echohl NONE
+  echohl Type   | echo '    Global Variables:'  | echohl NONE
+  for variable in global_variables
+    echo '    let g:'.variable.' = '. string(g:[variable])
