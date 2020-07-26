@@ -60,3 +60,14 @@ function! vista#debugging#Info() abort
   echohl Type   | echo '    Global Variables:'  | echohl NONE
   for variable in global_variables
     echo '    let g:'.variable.' = '. string(g:[variable])
+  endfor
+endfunction
+
+function! vista#debugging#InfoToClipboard() abort
+  redir => l:output
+    silent call vista#debugging#Info()
+  redir END
+
+  let @+ = l:output
+  echohl Type     | echo '[vista.vim] '               | echohl NONE
+  e
