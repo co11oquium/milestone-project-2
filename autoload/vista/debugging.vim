@@ -70,4 +70,6 @@ function! vista#debugging#InfoToClipboard() abort
 
   let @+ = l:output
   echohl Type     | echo '[vista.vim] '               | echohl NONE
-  e
+  echohl Function | echon 'Vista info'                | echohl NONE
+  echohl Normal   | echon ' copied to your clipboard' | echohl NONE
+endfunction
