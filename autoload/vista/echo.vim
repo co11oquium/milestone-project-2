@@ -17,4 +17,12 @@ function! s:TryParseAndEchoScope() abort
 
   " Echo the scope of current tag if found
   if linenr != 0
-    let scope = matchstr(getline(linenr), '\a\+$
+    let scope = matchstr(getline(linenr), '\a\+$')
+    if !empty(scope)
+      call s:EchoScope(scope)
+    else
+      " For the kind renderer
+      let pieces = split(getline(linenr), ' ')
+      if !empty(pieces)
+        let scope = pieces[1]
+        call s:EchoScope(sc
