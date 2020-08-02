@@ -25,4 +25,14 @@ function! s:TryParseAndEchoScope() abort
       let pieces = split(getline(linenr), ' ')
       if !empty(pieces)
         let scope = pieces[1]
-        call s:EchoScope(sc
+        call s:EchoScope(scope)
+      endif
+    endif
+  endif
+endfunction
+
+function! vista#echo#EchoScopeInCmdlineIsOk() abort
+  let cur_line = getline('.')
+  if cur_line[-1:] ==# ']'
+    let splitted = split(cur_line)
+    " Join the scope parts i
