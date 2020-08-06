@@ -57,4 +57,13 @@ function! s:EchoScopeFromCacheIsOk() abort
       else
         call s:EchoScope(tagline.kind)
       endif
-      return v:tr
+      return v:true
+    endif
+  endif
+  return v:false
+endfunction
+
+" Echo the tag with detailed info in the cmdline
+" Try to echo the scope and then the tag.
+function! vista#echo#EchoInCmdline(msg, tag) abort
+  let [msg, tag] =
