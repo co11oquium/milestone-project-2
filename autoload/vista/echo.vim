@@ -50,4 +50,11 @@ function! s:EchoScopeFromCacheIsOk() abort
     " should exclude the first two lines and keep in mind that the 1-based and
     " 0-based.
     " This is really error prone.
-    let t
+    let tagline = get(g:vista.vlnum_cache, line('.') - 3, '')
+    if !empty(tagline)
+      if has_key(tagline, 'scope')
+        call s:EchoScope(tagline.scope)
+      else
+        call s:EchoScope(tagline.kind)
+      endif
+      return v:tr
