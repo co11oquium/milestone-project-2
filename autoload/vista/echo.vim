@@ -41,4 +41,13 @@ function! vista#echo#EchoScopeInCmdlineIsOk() abort
     call s:EchoScope(scope)
     echohl Keyword | echon cnt | echohl NONE
     return v:true
-  en
+  endif
+  return v:false
+endfunction
+
+function! s:EchoScopeFromCacheIsOk() abort
+  if has_key(g:vista, 'vlnum_cache')
+    " should exclude the first two lines and keep in mind that the 1-based and
+    " 0-based.
+    " This is really error prone.
+    let t
