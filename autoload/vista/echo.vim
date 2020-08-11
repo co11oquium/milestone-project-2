@@ -66,4 +66,13 @@ endfunction
 " Echo the tag with detailed info in the cmdline
 " Try to echo the scope and then the tag.
 function! vista#echo#EchoInCmdline(msg, tag) abort
-  let [msg, tag] =
+  let [msg, tag] = [a:msg, a:tag]
+
+  " Case II:\@ $R^2 \geq Q^3$ :  paragraph:175
+  try
+    let start = stridx(msg, tag)
+
+    " If couldn't find the tag in the msg
+    if start == -1
+      echohl Function | echo msg | echohl NONE
+      retur
