@@ -87,4 +87,11 @@ function! vista#echo#EchoInCmdline(msg, tag) abort
     call s:TryParseAndEchoScope()
   endif
 
-  " if start i
+  " if start is 0, msg[0:-1] will display the redundant whole msg.
+  if start != 0
+    echohl Statement | echon msg[0 : start-1] | echohl NONE
+  endif
+
+  let end = start + strlen(tag)
+  echohl Search    | echon msg[start : end-1] | echohl NONE
+  echohl
