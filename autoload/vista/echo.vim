@@ -75,4 +75,16 @@ function! vista#echo#EchoInCmdline(msg, tag) abort
     " If couldn't find the tag in the msg
     if start == -1
       echohl Function | echo msg | echohl NONE
-      retur
+      return
+    endif
+  catch /^Vim\%((\a\+)\)\=:E869/
+    echohl Function | echo msg | echohl NONE
+    return
+  endtry
+
+  " Try highlighting the scope of current tag
+  if !s:EchoScopeFromCacheIsOk()
+    call s:TryParseAndEchoScope()
+  endif
+
+  " if start i
