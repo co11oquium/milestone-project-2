@@ -94,4 +94,5 @@ function! vista#echo#EchoInCmdline(msg, tag) abort
 
   let end = start + strlen(tag)
   echohl Search    | echon msg[start : end-1] | echohl NONE
-  echohl
+  echohl Statement | echon msg[end : ]        | echohl NONE
+endfunction
