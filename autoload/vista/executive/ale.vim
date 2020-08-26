@@ -10,4 +10,13 @@ let s:should_display = v:false
 function! s:HandleLSPResponse(resp) abort
   let s:fetching = v:false
   if type(a:resp) != v:t_dict
-        \ || has_key(
+        \ || has_key(a:resp, 'error')
+        \ || !has_key(a:resp, 'result')
+        \ || empty(get(a:resp, 'result', {}))
+    return
+  endif
+
+  let s:data = vista#renderer#LSPPreprocess(a:resp.result)
+
+  if !empty(s:data)
+    let [s:reload_only, s:should_d
