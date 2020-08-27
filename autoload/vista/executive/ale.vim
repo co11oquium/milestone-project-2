@@ -47,4 +47,12 @@ function! s:Run() abort
 endfunction
 
 function! s:RunAsync() abort
-  let linters = map(filter(ale
+  let linters = map(filter(ale#linter#Get(&filetype), '!empty(v:val.lsp)'), 'v:val.name')
+  if empty(linters)
+    return
+  endif
+
+  let method = 'textDocument/documentSymbol'
+  let bufnr = g:vista.source.bufnr
+  let params = {
+    \   'textD
