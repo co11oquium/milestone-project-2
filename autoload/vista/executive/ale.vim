@@ -37,4 +37,14 @@ function! s:AutoUpdate(fpath) abort
   call s:RunAsync()
 endfunction
 
-function
+function! s:Run() abort
+  let s:fetching = v:false
+  call s:RunAsync()
+  while s:fetching
+    sleep 100m
+  endwhile
+  return get(s:, 'data', {})
+endfunction
+
+function! s:RunAsync() abort
+  let linters = map(filter(ale
