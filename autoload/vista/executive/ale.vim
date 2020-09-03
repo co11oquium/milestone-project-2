@@ -62,4 +62,11 @@ function! s:RunAsync() abort
   let message = [0, method, params]
   let Callback = function('s:HandleLSPResponse')
 
-  for linter in lint
+  for linter in linters
+    call ale#lsp_linter#SendRequest(bufnr, linter, message, Callback)
+    let s:fetching = v:true
+  endfor
+endfunction
+
+function! vista#executive#ale#Run(fpath) abort
+  if exists('g:loaded_ale_dont_use_this_
