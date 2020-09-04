@@ -69,4 +69,12 @@ function! s:RunAsync() abort
 endfunction
 
 function! vista#executive#ale#Run(fpath) abort
-  if exists('g:loaded_ale_dont_use_this_
+  if exists('g:loaded_ale_dont_use_this_in_other_plugins_please')
+    let s:fpath = a:fpath
+    return s:Run()
+  endif
+endfunction
+
+function! vista#executive#ale#RunAsync() abort
+  if exists('g:loaded_ale_dont_use_this_in_other_plugins_please')
+    call s:RunAs
