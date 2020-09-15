@@ -83,4 +83,18 @@ endfunction
 
 function! vista#executive#ale#Execute(bang, should_display, ...) abort
   call vista#source#Update(bufnr('%'), winnr(), expand('%'), expand('%:p'))
-  let s:fpath = expa
+  let s:fpath = expand('%:p')
+
+  let g:vista.silent = v:false
+  let s:should_display = a:should_display
+
+  call vista#OnExecute(s:provider, function('s:AutoUpdate'))
+
+  if a:bang
+    call s:Run()
+  else
+    call s:RunAsync()
+  endif
+endfunction
+
+functi
