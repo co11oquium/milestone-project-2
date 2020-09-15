@@ -97,4 +97,6 @@ function! vista#executive#ale#Execute(bang, should_display, ...) abort
   endif
 endfunction
 
-functi
+function! vista#executive#ale#Cache() abort
+  return get(s:, 'cache', {})
+endfunction
