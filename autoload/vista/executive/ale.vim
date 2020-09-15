@@ -77,4 +77,10 @@ endfunction
 
 function! vista#executive#ale#RunAsync() abort
   if exists('g:loaded_ale_dont_use_this_in_other_plugins_please')
-    call s:RunAs
+    call s:RunAsync()
+  endif
+endfunction
+
+function! vista#executive#ale#Execute(bang, should_display, ...) abort
+  call vista#source#Update(bufnr('%'), winnr(), expand('%'), expand('%:p'))
+  let s:fpath = expa
