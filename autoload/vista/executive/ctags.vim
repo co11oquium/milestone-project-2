@@ -257,3 +257,174 @@ function! s:FromTMPDIR() abort
   elseif tmpdir !~# '/$'
     let tmpdir .= '/'
   endif
+  return tmpdir
+endfunction
+
+function! s:GetTempDirectory() abort
+  if exists('s:tmpdir')
+    return s:tmpdir
+  else
+    if exists('$TMPDIR')
+      let s:tmpdir = s:FromTMPDIR()
+    else
+      let s:tmpdir = vista#util#CacheDirectory()
+    endif
+    return s:tmpdir
+  endif
+endfunction
+
+" Use a temporary files for ctags processing instead of the original one.
+" This allows using Tagbar for files accessed with netrw, and also doesn't
+" slow down Tagbar for files that sit on slow network drives.
+" This idea comes from tagbar.
+function! s:IntoTemp(...) abort
+  " Don't use tempname() if possible since it would cause the changing of the anonymous tag name.
+  "
+  " Ref: https://github.com/liuchengxu/vista.vim/issues/122#issuecomment-511115932
+  try
+    let tmp = s:GetTempDirectory().s:TempnameBasedOnSourceBufname()
+  catch
+    let tmp = s:BuiltinTempname()
+  endtry
+
+  if get(g:vista, 'on_text_changed', 0)
+    let lines = g:vista.source.lines()
+    let g:vista.on_text_changed = 0
+  else
+    if empty(a:1)
+      let lines = g:vista.source.lines()
+    else
+      try
+        let lines = readfile(a:1)
+      " Vim cannot read a temporary file, this may happen when you open vim with
+      " a file which does not exist yet, e.g., 'vim does_exist_yet.txt'
+      catch
+        " catch all readfile exception
+        return
+      endtry
+    endif
+  endif
+
+  if writefile(lines, tmp) == 0
+    return tmp
+  else
+    return vista#error#('Fail to write into a temp file.')
+  endif
+endfunction
+
+function! s:ApplyExecute(bang, fpath) abort
+  let cmd = s:BuildCmd(a:fpath)
+  if empty(cmd)
+    return
+  endif
+
+  if a:bang || !s:can_async
+    call s:ApplyRun(cmd)
+  else
+    call vista#Debug('executive::ctags::s:ApplyExecute calling s:RunAsyncCommon('.cmd.')')
+    call s:RunAsyncCommon(cmd)
+  endif
+endfunction
+
+function! s:Run(fpath) abort
+  let cmd = s:BuildCmd(a:fpath)
+  if empty(cmd)
+    return
+  endif
+
+  call s:ApplyRun(cmd)
+
+  return s:data
+endfunction
+
+function! s:RunAsyncCommon(cmd) abort
+  if exists('s:jodid')
+    call vista#util#JobStop(s:jodid)
+    call s:NoteTemp()
+  endif
+
+  let s:jodid = s:ApplyRunAsync(a:cmd)
+
+  if !s:jodid
+    call vista#error#RunCtags(a:cmd)
+  endif
+endfunction
+
+function! s:RunAsync(fpath) abort
+  if s:can_async
+    let cmd = s:BuildCmd(a:fpath)
+    if empty(cmd)
+      return
+    endif
+
+    call s:RunAsyncCommon(cmd)
+  endif
+endfunction
+
+function! s:Execute(bang, should_display) abort
+  let s:should_display = a:should_display
+  let s:fpath = expand('%:p')
+  call s:ApplyExecute(a:bang, s:fpath)
+endfunction
+
+function! s:Dispatch(F, ...) abort
+  let custom_cmd = s:GetCustomCmd(&filetype)
+
+  let exe = custom_cmd isnot v:null ? split(custom_cmd)[0] : s:ctags
+
+  if !executable(exe)
+    call vista#error#Need(exe)
+    return
+  endif
+
+  call vista#SetProvider(s:provider)
+  return call(function(a:F), a:000)
+endfunction
+
+function! vista#executive#ctags#Cache() abort
+  return get(s:, 'data', {})
+endfunction
+
+" Run ctags given the cmd synchronously
+function! vista#executive#ctags#Run(fpath) abort
+  return s:Dispatch('s:Run', a:fpath)
+endfunction
+
+" Run ctags given the cmd asynchronously
+function! vista#executive#ctags#RunAsync(fpath) abort
+  call s:Dispatch('s:RunAsync', a:fpath)
+endfunction
+
+function! vista#executive#ctags#Execute(bang, should_display, ...) abort
+  call vista#OnExecute(s:provider, function('s:AutoUpdate'))
+  return s:Dispatch('s:Execute', a:bang, a:should_display)
+endfunction
+
+" Run ctags recursively.
+function! vista#executive#ctags#ProjectRun() abort
+  if !exists('s:recursive_ctags_cmd')
+    " https://github.com/universal-ctags/ctags/issues/2042
+    "
+    " If ctags has the json format feature, we should use the
+    " `--output-format=json` option, which is easier to parse and more reliable.
+    " Otherwise we will use the `--_xformat` option.
+    if s:support_json_format
+      let s:recursive_ctags_cmd = s:ctags.' '.s:ctags_project_opts.' -R -x --output-format=json --fields=+n'
+      let s:RecursiveParser = function('vista#parser#ctags#RecursiveFromJSON')
+    else
+      let s:recursive_ctags_cmd = s:ctags.' '.s:ctags_project_opts." -R -x --_xformat='TAGNAME:%N ++++ KIND:%K ++++ LINE:%n ++++ INPUT-FILE:%F ++++ PATTERN:%P'"
+      let s:RecursiveParser = function('vista#parser#ctags#RecursiveFromXformat')
+    endif
+  endif
+
+  let output = system(s:recursive_ctags_cmd)
+  if v:shell_error
+    return vista#error#RunCtags(s:recursive_ctags_cmd)
+  endif
+
+  let s:data = {}
+
+  call map(split(output, "\n"), 's:RecursiveParser(v:val, s:data)')
+
+  return s:data
+endfunction
