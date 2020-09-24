@@ -11,3 +11,10 @@ let s:fetching = v:true
 
 function! s:HandleLSPResponse(output) abort
   let s:fetching = v:false
+  if !has_key(a:output, 'result')
+    call vista#error#Notify('No result via LanguageClient#textDocument_documentSymbol()')
+    return
+  endif
+
+  let s:data = vista#renderer#LSPPreprocess(a:output.result)
+  let [s:reload_only, s:shoul
