@@ -17,4 +17,9 @@ function! s:HandleLSPResponse(output) abort
   endif
 
   let s:data = vista#renderer#LSPPreprocess(a:output.result)
-  let [s:reload_only, s:shoul
+  let [s:reload_only, s:should_display] = vista#renderer#LSPProcess(s:data, s:reload_only, s:should_display)
+
+  " Update cache when new data comes.
+  let s:cache = get(s:, 'cache', {})
+  let s:cache[s:fpath] = s:data
+  let s:cache.ftime = ge
