@@ -22,4 +22,16 @@ function! s:HandleLSPResponse(output) abort
   " Update cache when new data comes.
   let s:cache = get(s:, 'cache', {})
   let s:cache[s:fpath] = s:data
-  let s:cache.ftime = ge
+  let s:cache.ftime = getftime(s:fpath)
+  let s:cache.bufnr = bufnr('')
+
+  call vista#cursor#TryInitialRun()
+endfunction
+
+function! s:AutoUpdate(fpath) abort
+  let s:reload_only = v:true
+  let s:fpath = a:fpath
+  call s:RunAsync()
+endfunction
+
+function!
