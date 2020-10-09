@@ -34,4 +34,16 @@ function! s:AutoUpdate(fpath) abort
   call s:RunAsync()
 endfunction
 
-function!
+function! s:Run() abort
+  if !exists('*LanguageClient#textDocument_documentSymbol')
+    return
+  endif
+  call s:RunAsync()
+  let s:fetching = v:true
+  while s:fetching
+    sleep 100m
+  endwhile
+  return get(s:, 'data', {})
+endfunction
+
+function! s:RunAsync() abo
