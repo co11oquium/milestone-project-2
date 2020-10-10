@@ -46,4 +46,9 @@ function! s:Run() abort
   return get(s:, 'data', {})
 endfunction
 
-function! s:RunAsync() abo
+function! s:RunAsync() abort
+  if exists('*LanguageClient#textDocument_documentSymbol')
+    call vista#SetProvider(s:provider)
+    call vista#win#Execute(
+          \ g:vista.source.get_winnr(),
+          \ function('LanguageClient#textDocument_documentSy
