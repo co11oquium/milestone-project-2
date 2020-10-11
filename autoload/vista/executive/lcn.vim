@@ -51,4 +51,16 @@ function! s:RunAsync() abort
     call vista#SetProvider(s:provider)
     call vista#win#Execute(
           \ g:vista.source.get_winnr(),
-          \ function('LanguageClient#textDocument_documentSy
+          \ function('LanguageClient#textDocument_documentSymbol'),
+          \ {'handle': v:false},
+          \ function('s:HandleLSPResponse')
+          \ )
+  endif
+endfunction
+
+function! vista#executive#lcn#Run(fpath) abort
+  let s:fpath = a:fpath
+  return s:Run()
+endfunction
+
+f
