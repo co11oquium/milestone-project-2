@@ -79,4 +79,10 @@ function! vista#executive#lcn#Execute(bang, should_display, ...) abort
   if a:bang
     return s:Run()
   else
-    c
+    call s:RunAsync()
+  endif
+endfunction
+
+function! vista#executive#lcn#Cache() abort
+  return get(s:, 'cache', {})
+endfunction
