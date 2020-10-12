@@ -63,4 +63,10 @@ function! vista#executive#lcn#Run(fpath) abort
   return s:Run()
 endfunction
 
-f
+function! vista#executive#lcn#RunAsync() abort
+  call s:RunAsync()
+endfunction
+
+function! vista#executive#lcn#Execute(bang, should_display, ...) abort
+  call vista#source#Update(bufnr('%'), winnr(), expand('%'), expand('%:p'))
+  l
