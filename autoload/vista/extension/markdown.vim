@@ -26,3 +26,10 @@ function! s:GatherHeaderMetadata() abort
     if l:line =~# '````*' || l:line =~# '\~\~\~\~*'
       let is_fenced_block = !is_fenced_block
     endif
+
+    let is_header = s:IsHeader(l:line, l:next_line)
+
+    if is_header && !is_fenced_block
+        let matched = matchlist(l:line, '\(\#*\)\(.*\)')
+        let text = vista#util#Trim(matched[2])
+        let s:l
