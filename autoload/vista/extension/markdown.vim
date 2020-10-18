@@ -6,4 +6,17 @@ let s:provider = fnamemodify(expand('<sfile>'), ':t:r')
 
 function! s:IsHeader(cur_line, next_line) abort
   return a:cur_line =~# '^#\+' ||
-        \ a:cur_line =~# '^\S' && (a:next_line =~# '^=\+\s*$' 
+        \ a:cur_line =~# '^\S' && (a:next_line =~# '^=\+\s*$' || a:next_line =~# '^-\+\s*$')
+endfunction
+
+function! s:GatherHeaderMetadata() abort
+  let is_fenced_block = 0
+
+  let s:lnum2tag = {}
+
+  let headers = []
+
+  let idx = 0
+  let lines = g:vista.source.lines()
+
+  for line in 
