@@ -19,4 +19,10 @@ function! s:GatherHeaderMetadata() abort
   let idx = 0
   let lines = g:vista.source.lines()
 
-  for line in 
+  for line in lines
+    let line = substitute(line, '#', "\\\#", 'g')
+    let next_line = get(lines, idx + 1, '')
+
+    if l:line =~# '````*' || l:line =~# '\~\~\~\~*'
+      let is_fenced_block = !is_fenced_block
+    endif
