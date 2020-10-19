@@ -32,4 +32,14 @@ function! s:GatherHeaderMetadata() abort
     if is_header && !is_fenced_block
         let matched = matchlist(l:line, '\(\#*\)\(.*\)')
         let text = vista#util#Trim(matched[2])
-        let s:l
+        let s:lnum2tag[len(headers)] = text
+        call add(headers, {'lnum': idx+1, 'text': text, 'level': strlen(matched[1])})
+    endif
+
+    let idx += 1
+  endfor
+
+  return headers
+endfunction
+
+" Use s:lnum2tag so that we don't have to extract the header fro
