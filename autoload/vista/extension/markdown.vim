@@ -42,4 +42,11 @@ function! s:GatherHeaderMetadata() abort
   return headers
 endfunction
 
-" Use s:lnum2tag so that we don't have to extract the header fro
+" Use s:lnum2tag so that we don't have to extract the header from the rendered line.
+function! vista#extension#markdown#GetHeader(lnum) abort
+  return get(s:lnum2tag, a:lnum, v:null)
+endfunction
+
+function! s:ApplyAutoUpdate() abort
+  if has_key(g:vista, 'bufnr') && g:vista.winnr() != -1
+    call vista#SetPr
