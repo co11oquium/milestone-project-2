@@ -63,4 +63,13 @@ function! s:ShouldUseMarkdownExtension(source_filetype) abort
   if a:source_filetype ==# 'markdown'
     return v:true
   " vimwiki can reuse the markdown extension.
-  elseif a:source_filety
+  elseif a:source_filetype ==# 'vimwiki'
+        \ && vista#GetExplicitExecutive(a:source_filetype) ==# 'markdown'
+    return v:true
+  else
+    return v:false
+  endif
+endfunction
+
+function! s:AutoUpdate(fpath) abort
+  let source_filetype = g:vist
