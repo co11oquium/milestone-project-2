@@ -56,4 +56,11 @@ function! s:ApplyAutoUpdate() abort
 endfunction
 
 function! vista#extension#markdown#AutoUpdate(fpath) abort
-  call
+  call s:AutoUpdate(a:fpath)
+endfunction
+
+function! s:ShouldUseMarkdownExtension(source_filetype) abort
+  if a:source_filetype ==# 'markdown'
+    return v:true
+  " vimwiki can reuse the markdown extension.
+  elseif a:source_filety
