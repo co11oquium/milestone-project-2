@@ -49,4 +49,11 @@ endfunction
 
 function! s:ApplyAutoUpdate() abort
   if has_key(g:vista, 'bufnr') && g:vista.winnr() != -1
-    call vista#SetPr
+    call vista#SetProvider(s:provider)
+    let rendered = vista#renderer#markdown_like#MD(s:GatherHeaderMetadata())
+    call vista#util#SetBufline(g:vista.bufnr, rendered)
+  endif
+endfunction
+
+function! vista#extension#markdown#AutoUpdate(fpath) abort
+  call
