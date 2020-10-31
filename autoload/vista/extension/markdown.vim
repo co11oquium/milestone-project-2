@@ -78,4 +78,12 @@ function! s:AutoUpdate(fpath) abort
   elseif source_filetype ==# 'rst'
     call vista#extension#rst#AutoUpdate(a:fpath)
   else
-    call vista#executive#ctags#AutoUpdate(
+    call vista#executive#ctags#AutoUpdate(a:fpath)
+  endif
+endfunction
+
+" Credit: originally from `:Toc` of vim-markdown
+function! vista#extension#markdown#Execute(_bang, should_display) abort
+  call vista#OnExecute(s:provider, function('s:AutoUpdate'))
+
+  if a:should_dis
