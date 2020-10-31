@@ -72,4 +72,10 @@ function! s:ShouldUseMarkdownExtension(source_filetype) abort
 endfunction
 
 function! s:AutoUpdate(fpath) abort
-  let source_filetype = g:vist
+  let source_filetype = g:vista.source.filetype()
+  if s:ShouldUseMarkdownExtension(source_filetype)
+    call s:ApplyAutoUpdate()
+  elseif source_filetype ==# 'rst'
+    call vista#extension#rst#AutoUpdate(a:fpath)
+  else
+    call vista#executive#ctags#AutoUpdate(
