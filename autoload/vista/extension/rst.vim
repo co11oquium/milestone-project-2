@@ -63,3 +63,20 @@ function! vista#extension#rst#AutoUpdate(fpath) abort
 endfunction
 
 function! s:AutoUpdate(fpath) abort
+  if g:vista.source.filetype() ==# 'rst'
+    call s:ApplyAutoUpdate()
+  elseif g:vista.source.filetype() ==# 'markdown'
+    call vista#extension#markdown#AutoUpdate(a:fpath)
+  else
+    call vista#executive#ctags#AutoUpdate(a:fpath)
+  endif
+endfunction
+
+function! vista#extension#rst#Execute(_bang, should_display) abort
+  call vista#OnExecute(s:provider, function('s:AutoUpdate'))
+
+  if a:should_display
+    let rendered = vista#renderer#markdown_like#RST(s:GatherHeaderMetadata())
+    call vista#sidebar#OpenOrUpdate(rendered)
+  endif
+endfunction
