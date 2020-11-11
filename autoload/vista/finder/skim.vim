@@ -4,4 +4,12 @@
 
 let s:finder = fnamemodify(expand('<sfile>'), ':t:r')
 
-" Actually call sk
+" Actually call skim#run()
+function! s:ApplyRun() abort
+  try
+    " skim_colors may interfere custom syntax.
+    " Unlet and restore it later.
+    if exists('g:skim_colors')
+      let old_skim_colors = g:skim_colors
+      unlet g:skim_colors
+ 
