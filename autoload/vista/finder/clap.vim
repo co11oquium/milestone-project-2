@@ -4,4 +4,7 @@
 
 function! vista#finder#clap#Run(...) abort
   if !exists('g:loaded_clap')
-    return vista#error#Need('https://github.com/li
+    return vista#error#Need('https://github.com/liuchengxu/vim-clap')
+  endif
+  Clap tags
+endfunction
