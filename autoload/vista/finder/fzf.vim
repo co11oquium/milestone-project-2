@@ -150,3 +150,67 @@ endfunction
 function! vista#finder#fzf#Highlight() abort
   let groups = ['Character', 'Float', 'Identifier', 'Statement', 'Label', 'Boolean', 'Delimiter', 'Constant', 'String', 'Operator', 'PreCondit', 'Include', 'Conditional', 'PreProc', 'TypeDef',]
   let len_groups = len(groups)
+
+  let icons = values(g:vista#renderer#icons)
+
+  let idx = 0
+  let hi_idx = 0
+
+  let icon_groups = []
+  for icon in icons
+    let cur_group = 'FZFVistaIcon'.idx
+    call add(icon_groups, cur_group)
+    execute 'syntax match' cur_group '/'.icon.'/' 'contained'
+    execute 'hi default link' cur_group groups[hi_idx]
+    let hi_idx += 1
+    let hi_idx = hi_idx % len_groups
+    let idx += 1
+  endfor
+
+  execute 'syntax match FZFVistaTag    /\s*.*\(:\d\+\s\)\@=/' 'contains=FZFVistaIcon,'.join(icon_groups, ',')
+  execute 'syntax match FZFVistaNumber /^.*\(\s\s\[\)\@=/' 'contains=FZFVistaTag,FZFVistaIcon,'.join(icon_groups, ',')
+  syntax match FZFVistaScope  /^.*\]\s\s/ contains=FZFVistaNumber,FZFVistaBracket
+  syntax match FZFVista /^[^│┌└]*/ contains=FZFVistaBracket,FZFVistaTag,FZFVistaNumber,FZFVistaScope
+  syntax match FZFVistaBracket /\s\s\[\|\]\s\s/ contained
+
+  hi default link FZFVistaBracket  SpecialKey
+  hi default link FZFVistaNumber   Number
+  hi default link FZFVistaTag      Tag
+  hi default link FZFVistaScope    Function
+  hi default link FZFVista         Type
+endfunction
+
+" Optional argument: executive, coc or ctags
+" Ctags is the default.
+function! vista#finder#fzf#Run(...) abort
+  if g:vista_close_on_fzf_select
+    call vista#sidebar#Close()
+  endif
+  if !exists('*fzf#run')
+    return vista#error#Need('https://github.com/junegunn/fzf')
+  endif
+
+  let [s:data, s:cur_executive, s:using_alternative] = call('vista#finder#GetSymbols', a:000)
+
+  if s:data is# v:null
+    return vista#util#Warning('Empty data for fzf finder')
+  endif
+
+  call s:Run()
+endfunction
+
+" TODO workspace symbols
+function! vista#finder#fzf#ProjectRun(executive) abort
+  if a:executive !=? 'ctags'
+    return vista#error#('Only ctags supports Vista finder!')
+  endif
+
+  let s:data = vista#executive#{a:executive}#ProjectRun()
+  let s:cur_executive = a:executive
+
+  if empty(s:data)
+    return vista#util#Warning('Empty data for finder')
+  endif
+
+  call s:ProjectRun()
+endfunction
