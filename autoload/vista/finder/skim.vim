@@ -23,4 +23,8 @@ function! s:ApplyRun() abort
 endfunction
 
 function! s:Run(...) abort
-  let sour
+  let source = vista#finder#PrepareSource(s:data)
+  let using_alternative = get(s:, 'using_alternative', v:false) ? '*' : ''
+  let prompt = using_alternative.s:finder.':'.s:cur_executive.'> '
+
+  let s:opts = vista#finder#Prep
