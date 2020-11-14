@@ -36,4 +36,10 @@ endfunction
 " Ctags is the default.
 function! vista#finder#skim#Run(...) abort
   if !exists('*skim#run')
-    retu
+    return vista#error#Need('https://github.com/lotabout/skim')
+  endif
+
+  let [s:data, s:cur_executive, s:using_alternative] = call('vista#finder#GetSymbols', a:000)
+
+  if s:data is# v:null
+    return vista#util#Warning('Empty data for s
