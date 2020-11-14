@@ -42,4 +42,8 @@ function! vista#finder#skim#Run(...) abort
   let [s:data, s:cur_executive, s:using_alternative] = call('vista#finder#GetSymbols', a:000)
 
   if s:data is# v:null
-    return vista#util#Warning('Empty data for s
+    return vista#util#Warning('Empty data for skim finder')
+  endif
+
+  call s:Run()
+endfunction
