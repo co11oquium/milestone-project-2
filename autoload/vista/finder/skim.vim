@@ -27,4 +27,13 @@ function! s:Run(...) abort
   let using_alternative = get(s:, 'using_alternative', v:false) ? '*' : ''
   let prompt = using_alternative.s:finder.':'.s:cur_executive.'> '
 
-  let s:opts = vista#finder#Prep
+  let s:opts = vista#finder#PrepareOpts(source, prompt)
+
+  call vista#finder#RunFZFOrSkim(function('s:ApplyRun'))
+endfunction
+
+" Optional argument: executive, coc or ctags
+" Ctags is the default.
+function! vista#finder#skim#Run(...) abort
+  if !exists('*skim#run')
+    retu
