@@ -165,3 +165,65 @@ function! vista#finder#PrepareOpts(source, prompt) abort
 
   if len(g:vista_fzf_preview) > 0
     let idx = 0
+    let opt_preview_window_processed = v:false
+    while idx < len(g:vista_fzf_preview)
+      if g:vista_fzf_preview[idx] =~# '^\(left\|up\|right\|down\)'
+        let g:vista_fzf_preview[idx] = g:vista_fzf_preview[idx] . ':+{-1}-5'
+        let opt_preview_window_processed = v:true
+      endif
+      let idx = idx + 1
+    endwhile
+    if !opt_preview_window_processed
+      call extend(g:vista_fzf_preview, ['right:+{-1}-5'])
+    endif
+    let preview_opts = call('fzf#vim#with_preview', g:vista_fzf_preview).options
+
+    if has('win32')
+      " keeping old code around since we are not sure if / how preview works on windows
+      let preview_opts[-1] = preview_opts[-1][0:-3] . g:vista.source.fpath . (g:vista#renderer#enable_icon ? ':{2}' : ':{1}')
+    else
+      let object_name_index = g:vista#renderer#enable_icon ? '3' : '2'
+      let extract_line_number = printf(':$(echo {%s})', object_name_index)
+      let preview_opts[-1] = preview_opts[-1][0:-3] . fnameescape(g:vista.source.fpath) . extract_line_number
+    endif
+
+    call extend(opts.options, preview_opts)
+  endif
+
+  return opts
+endfunction
+
+" Actually call fzf#run() with a highlighter given the opts
+function! vista#finder#RunFZFOrSkim(apply_run) abort
+  echo "\r"
+
+  call a:apply_run()
+
+  " Only add highlights when using nvim, since vim has an issue with the highlight.
+  " Ref #139
+  if has('nvim')
+    call vista#finder#fzf#Highlight()
+
+    " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim
+    " Vim Highlight does not work at times
+    "
+    "  &modifiable is to avoid error in MacVim - E948: Job still running (add ! to end the job)
+    " if !has('nvim') && &modifiable
+      " edit
+    " endif
+  endif
+endfunction
+
+function! vista#finder#Dispatch(bang, finder, executive) abort
+  let finder = empty(a:finder) ? 'fzf' : a:finder
+  if empty(a:executive)
+    let executive = vista#GetExplicitExecutiveOrDefault()
+  else
+    let executive = a:executive
+  endif
+  if a:bang
+    call vista#finder#{finder}#ProjectRun(executive)
+  else
+    call vista#finder#{finder}#Run(executive)
+  endif
+endfunction
