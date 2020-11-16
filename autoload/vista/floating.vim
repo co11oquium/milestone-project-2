@@ -150,3 +150,80 @@ function! s:Display(msg, win_id) abort
         \   'focusable': v:false,
         \   'border': border,
         \ })
+
+  call nvim_buf_set_lines(s:floating_bufnr, 0, -1, 0, a:msg)
+
+  call s:HighlightTagInFloatinWin()
+
+  let &l:filetype = getbufvar(g:vista.source.bufnr, '&ft')
+  setlocal
+        \ winhl=Normal:VistaFloat
+        \ buftype=nofile
+        \ nobuflisted
+        \ bufhidden=hide
+        \ nonumber
+        \ norelativenumber
+        \ signcolumn=no
+        \ nofoldenable
+        \ nospell
+        \ wrap
+
+  wincmd p
+
+  augroup VistaFloatingWin
+    autocmd!
+    autocmd CursorMoved <buffer> call s:CloseOnCursorMoved()
+    autocmd BufEnter,WinEnter,WinLeave  * call s:CloseOnWinEnter()
+  augroup END
+
+  let g:vista.floating_visible = v:true
+endfunction
+
+function! vista#floating#Close() abort
+  call s:ApplyClose()
+endfunction
+
+" See if it's identical to the last lnum to avoid blink. Ref #55
+"
+" No need to display again when it's already visible.
+function! s:ShouldSkipDisplay(lnum) abort
+  silent! call timer_stop(s:floating_timer)
+
+  if a:lnum == s:last_lnum
+        \ && get(g:vista, 'floating_visible', v:false)
+    return 1
+  else
+    let s:last_lnum = a:lnum
+    return 0
+  endif
+endfunction
+
+function! s:DisplayWithDelay(lines) abort
+  let win_id = win_getid()
+  let s:floating_timer = timer_start(s:floating_delay, { -> s:Display(a:lines, win_id)})
+endfunction
+
+" Display in floating_win given the lnum of source buffer and current tag.
+function! vista#floating#DisplayAt(lnum, tag) abort
+  if s:ShouldSkipDisplay(a:lnum)
+    return
+  endif
+
+  " We save the tag info so that it could be used later for adding the tag highlight.
+  "
+  " It's problematic when calculating the highlight position here, leading to
+  " the displacement of current tag highlighting position.
+  let s:cur_tag = a:tag
+
+  let [lines, s:floating_lnum] = vista#preview#GetLines(a:lnum)
+  call s:DisplayWithDelay(lines)
+endfunction
+
+" Display in floating_win given the lnum of source buffer and raw lines.
+function! vista#floating#DisplayRawAt(lnum, lines) abort
+  if s:ShouldSkipDisplay(a:lnum)
+    return
+  endif
+
+  call s:DisplayWithDelay(a:lines)
+endfunction
