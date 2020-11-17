@@ -6,4 +6,11 @@
 "
 " lnum - current line number in vista window
 " ensure_visible - kepp this line visible
-" optional: tag - accurate ta
+" optional: tag - accurate tag
+function! vista#highlight#Add(lnum, ensure_visible, tag) abort
+  if exists('w:vista_highlight_id')
+    try
+      call matchdelete(w:vista_highlight_id)
+    catch /E803/
+      " ignore E803 error: ID not found
+ 
