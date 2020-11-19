@@ -21,4 +21,9 @@ function! vista#highlight#Add(lnum, ensure_visible, tag) abort
     let hi_pos = a:lnum
   else
     let cur_line = getline(a:lnum)
-    " Current line may contains +,-,~, use `\S` is incorr
+    " Current line may contains +,-,~, use `\S` is incorrect to find the right
+    " starting postion.
+    let [_, start, _] = matchstrpos(cur_line, '[a-zA-Z0-9_,#:]')
+
+    " If we know the tag, then what we have to do is to use the length of tag
+    " based on the starting point.
