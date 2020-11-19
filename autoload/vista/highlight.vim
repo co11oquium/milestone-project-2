@@ -33,4 +33,13 @@ function! vista#highlight#Add(lnum, ensure_visible, tag) abort
       let hi_pos = [a:lnum, start+1, strlen(a:tag)]
     else
       let [_, end, _] = matchstrpos(cur_line, ':\d\+$')
-      
+      let hi_pos = [a:lnum, start+1, end - start]
+    endif
+  endif
+
+  let w:vista_highlight_id = matchaddpos('IncSearch', [hi_pos])
+
+  if a:ensure_visible
+    execute 'normal!' a:lnum.'z.'
+  endif
+endfunction
