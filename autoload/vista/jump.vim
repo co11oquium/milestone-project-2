@@ -24,4 +24,11 @@ function! vista#jump#TagLine(tag) abort
 
   try
     let [_, start, _] = matchstrpos(line[0], s:EscapeForVimRegexp(a:tag))
- 
+  catch /^Vim\%((\a\+)\)\=:E869/
+    let start  = -1
+  endtry
+
+  call vista#source#GotoWin()
+  " Move cursor to the column of tag located, otherwise the first column
+  call vista#util#Cursor(lnum, start > -1 ? start+1 : 1)
+
