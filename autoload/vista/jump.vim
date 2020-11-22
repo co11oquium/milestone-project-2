@@ -4,4 +4,14 @@
 
 function! s:EscapeForVimRegexp(str) abort
   return escape(a:str, '^$.*?/\[]')
-endfun
+endfunction
+
+" Jump to the source line containing the given tag
+function! vista#jump#TagLine(tag) abort
+  let cur_line = split(getline('.'), ':')
+
+  " Skip if the current line or the target line is empty
+  if empty(cur_line)
+    return
+  endif
+
