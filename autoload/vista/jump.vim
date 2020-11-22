@@ -15,3 +15,13 @@ function! vista#jump#TagLine(tag) abort
     return
   endif
 
+  let lnum = cur_line[-1]
+  let line = getbufline(g:vista.source.bufnr, lnum)
+
+  if empty(line)
+    return
+  endif
+
+  try
+    let [_, start, _] = matchstrpos(line[0], s:EscapeForVimRegexp(a:tag))
+ 
