@@ -52,4 +52,17 @@ function! s:NextTopLevelLnum() abort
   while cur_lnum < ending
     let cur_lnum += 1
     if indent(cur_lnum) == 0 && !empty(getline(cur_lnum))
-      return c
+      return cur_lnum
+    endif
+  endwhile
+
+  return 0
+endfunction
+
+function! s:PrevTopLevelLnum() abort
+  let cur_lnum = line('.')
+
+  " The first two lines contain no tags.
+  while cur_lnum > 2
+    let cur_lnum -= 1
+    if 
