@@ -43,3 +43,13 @@ function! vista#jump#TagLine(tag) abort
   if g:vista_close_on_jump
     call vista#sidebar#Close()
   endif
+endfunction
+
+function! s:NextTopLevelLnum() abort
+  let cur_lnum = line('.')
+  let ending = line('$')
+
+  while cur_lnum < ending
+    let cur_lnum += 1
+    if indent(cur_lnum) == 0 && !empty(getline(cur_lnum))
+      return c
