@@ -32,3 +32,14 @@ function! vista#jump#TagLine(tag) abort
   " Move cursor to the column of tag located, otherwise the first column
   call vista#util#Cursor(lnum, start > -1 ? start+1 : 1)
 
+  if g:vista_enable_centering_jump
+    normal! zz
+  endif
+
+  call call('vista#util#Blink', g:vista_blink)
+
+  call vista#win#CloseFloating()
+
+  if g:vista_close_on_jump
+    call vista#sidebar#Close()
+  endif
