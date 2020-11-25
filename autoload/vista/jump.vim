@@ -79,4 +79,13 @@ endfunction
 
 function! s:ApplyJump(lnum) abort
   if a:lnum > 0
-    call vis
+    call vista#util#Cursor(a:lnum, 1)
+    normal! zz
+    call call('vista#util#Blink', g:vista_top_level_blink)
+  endif
+endfunction
+
+function! vista#jump#NextTopLevel() abort
+  call vista#win#CloseFloating()
+  call s:ApplyJump(s:NextTopLevelLnum())
+e
