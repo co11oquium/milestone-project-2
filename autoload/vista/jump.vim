@@ -88,4 +88,9 @@ endfunction
 function! vista#jump#NextTopLevel() abort
   call vista#win#CloseFloating()
   call s:ApplyJump(s:NextTopLevelLnum())
-e
+endfunction
+
+function! vista#jump#PrevTopLevel() abort
+  call vista#win#CloseFloating()
+  call s:ApplyJump(s:PrevTopLevelLnum())
+endfunction
