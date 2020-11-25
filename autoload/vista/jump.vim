@@ -65,4 +65,18 @@ function! s:PrevTopLevelLnum() abort
   " The first two lines contain no tags.
   while cur_lnum > 2
     let cur_lnum -= 1
-    if 
+    if indent(cur_lnum) == 0 && !empty(getline(cur_lnum))
+      return cur_lnum
+    endif
+  endwhile
+
+  if cur_lnum == 3
+    return 3
+  endif
+
+  return 0
+endfunction
+
+function! s:ApplyJump(lnum) abort
+  if a:lnum > 0
+    call vis
