@@ -93,3 +93,125 @@ endfunction
 " {tagname}<Tab>{tagfile}<Tab>{tagaddress};"<Tab>{kind}<Tab>{scope}
 " ['vista#executive#ctags#Execute', '/Users/xlc/.vim/plugged/vista.vim/autoload/vista/executive/ctags.vim', '84;"', 'function']
 function! vista#parser#ctags#FromExtendedRaw(line, container) abort
+  if a:line =~# '^!_TAG'
+    return
+  endif
+  " Prevent bugs when a:line is all whitespace or doesn't contain any tabs
+  " (can't be parsed).
+  if a:line =~# '^\s*$' || stridx(a:line, "\t") == -1
+    " Useful for debugging
+    " echom "Vista.vim: Error parsing ctags output: '" . a:line . "'"
+    return
+  endif
+
+  let items = split(a:line, '\t')
+
+  let line = {}
+
+  let line.name = items[0]
+  let line.tagfile = items[1]
+
+  " tagaddress itself possibly contains <Tab>, so we have to restore the
+  " original content and then split by `;"` to get the tagaddress and other
+  " fields.
+  " tagaddress may also contains `;"`, so we join all the splits except the
+  " last one as the tagaddress and keep the last split as the other fields.
+  let rejoined = join(items[2:], "\t")
+  let resplitted = split(rejoined, ';"')
+  let splits = len(resplitted)
+  let line.tagaddress = join(resplitted[:splits-2], ';"')
+
+  let fields = split(resplitted[splits-1], '\t')
+  let tagfields = s:ParseTagfield(fields)
+
+  call extend(line, tagfields)
+
+  if vista#ShouldIgnore(line.kind)
+    return
+  endif
+
+  call s:LoadData(a:container, line)
+
+endfunction
+
+function! vista#parser#ctags#FromJSON(line, container) abort
+  if a:line =~# '^ctags'
+    return
+  endif
+
+  try
+    let line = json_decode(a:line)
+  catch
+    call vista#error#('Fail to decode from JSON: '.a:line.', error: '.v:exception)
+    return
+  endtry
+
+  if vista#ShouldIgnore(line.kind)
+    return
+  endif
+
+  call s:LoadData(a:container, line)
+
+endfunction
+
+" ctags -R -x --_xformat='TAGNAME:%N ++++ KIND:%K ++++ LINE:%n ++++ INPUT-FILE:%F ++++ PATTERN:%P'"
+"
+function! vista#parser#ctags#RecursiveFromXformat(line, container) abort
+
+  if a:line =~# '^ctags: Warning:'
+    return
+  endif
+
+  let items = split(a:line, '++++')
+
+  if len(items) != 5
+    call vista#error#('Splitted items is not expected: '.string(items))
+    return
+  endif
+
+  call map(items, 'vista#util#Trim(v:val)')
+
+  " TAGNAME:
+  let tagname = items[0][8:]
+  " KIND:
+  let kind = items[1][5:]
+  if vista#ShouldIgnore(kind)
+    return
+  endif
+  " LINE:
+  let lnum = items[2][5:]
+  " INPUT-FILE:
+  let relpath = items[3][11:]
+  " PATTERN:
+  let pattern = items[4][8:]
+
+  let picked = {'lnum': lnum, 'text': tagname, 'tagfile': relpath, 'taginfo': pattern[2:-3]}
+
+  call vista#util#TryAdd(a:container, kind, picked)
+endfunction
+
+function! vista#parser#ctags#RecursiveFromJSON(line, container) abort
+  " {
+  "  "_type":"tag",
+  "  "name":"vista#source#Update",
+  "  "path":"autoload/vista/source.vim",
+  "  "pattern":"/^function! vista#source#Update(bufnr, winnr, ...) abort$/",
+  "  "line":29,
+  "  "kind":"function"
+  " }
+  if a:line =~# '^ctags: Warning: ignoring null tag'
+    return
+  endif
+
+  let line = json_decode(a:line)
+
+  let kind = line.kind
+
+  if vista#ShouldIgnore(kind)
+    return
+  endif
+
+  let picked = {'lnum': line.line, 'text': line.name, 'tagfile': line.path, 'taginfo': line.pattern[2:-3]}
+
+  call vista#util#TryAdd(a:container, kind, picked)
+endfunction
