@@ -110,3 +110,12 @@ function! vista#parser#lsp#ExtractSymbol(symbol, container) abort
   if symbol.kind ==? 'Method' || symbol.kind ==? 'Function'
     call add(g:vista.functions, symbol)
   endif
+
+  let picked = {'lnum': symbol.lnum, 'col': symbol.col, 'text': symbol.text}
+
+  if has_key(a:container, symbol.kind)
+    call add(a:container[symbol.kind], picked)
+  else
+    let a:container[symbol.kind] = [picked]
+  endif
+endfunction
