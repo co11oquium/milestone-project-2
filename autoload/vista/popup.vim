@@ -24,4 +24,11 @@ endfunction
 
 function! s:HiTagLine() abort
   if exists('w:vista_hi_cur_tag_id')
-    c
+    call matchdelete(w:vista_hi_cur_tag_id)
+  endif
+  let w:vista_hi_cur_tag_id = matchaddpos('Search', [s:popup_lnum])
+endfunction
+
+function! s:OpenPopup(lines) abort
+  if g:vista_sidebar_position =~# 'right'
+    let max_length = max(map(c
