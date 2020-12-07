@@ -16,4 +16,12 @@ function! s:ClosePopup() abort
 endfunction
 
 call prop_type_delete('VistaMatch')
-call prop_type_add('VistaMatch', { 'highlight': 'Search
+call prop_type_add('VistaMatch', { 'highlight': 'Search' })
+
+function! s:HiTag() abort
+  call prop_add(s:popup_lnum, s:popup_start+1, { 'length': s:popup_end - s:popup_start, 'type': 'VistaMatch' })
+endfunction
+
+function! s:HiTagLine() abort
+  if exists('w:vista_hi_cur_tag_id')
+    c
