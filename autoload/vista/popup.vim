@@ -31,4 +31,12 @@ endfunction
 
 function! s:OpenPopup(lines) abort
   if g:vista_sidebar_position =~# 'right'
-    let max_length = max(map(c
+    let max_length = max(map(copy(a:lines), 'strlen(v:val)')) + 2
+    let pos_opts = {
+          \ 'pos': 'botleft',
+          \ 'line': 'cursor-2',
+          \ 'col': 'cursor-'.max_length,
+          \ 'moved': 'WORD',
+          \ }
+  else
+    let winwidth = winwidt
