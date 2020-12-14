@@ -39,4 +39,11 @@ function! s:OpenPopup(lines) abort
           \ 'moved': 'WORD',
           \ }
   else
-    let winwidth = winwidt
+    let winwidth = winwidth(0)
+    let cur_length = strlen(getline('.'))
+    let offset = min([cur_length + 4, winwidth])
+    let col = 'cursor+'.offset
+    let pos_opts = {
+          \ 'pos': 'botleft',
+          \ 'line': 'cursor-2',
+        
