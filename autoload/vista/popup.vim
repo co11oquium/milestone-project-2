@@ -46,4 +46,11 @@ function! s:OpenPopup(lines) abort
     let pos_opts = {
           \ 'pos': 'botleft',
           \ 'line': 'cursor-2',
-        
+          \ 'col': col,
+          \ 'moved': 'WORD',
+          \ }
+  endif
+
+  if !exists('s:popup_winid')
+    let s:popup_winid = popup_create(a:lines, pos_opts)
+    let s:popup_bufnr = winbufnr(s:popup_winid
