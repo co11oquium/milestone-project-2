@@ -53,4 +53,10 @@ function! s:OpenPopup(lines) abort
 
   if !exists('s:popup_winid')
     let s:popup_winid = popup_create(a:lines, pos_opts)
-    let s:popup_bufnr = winbufnr(s:popup_winid
+    let s:popup_bufnr = winbufnr(s:popup_winid)
+
+    let filetype = getbufvar(g:vista.source.bufnr, '&ft')
+    call win_execute(s:popup_winid, 'setlocal filetype='.filetype.' nofoldenable nospell')
+  else
+    silent call deletebufline(s:popup_bufnr, 1, '$')
+    call setbufline(s:popup_bufnr, 1, a:li
