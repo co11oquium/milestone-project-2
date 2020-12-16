@@ -59,4 +59,13 @@ function! s:OpenPopup(lines) abort
     call win_execute(s:popup_winid, 'setlocal filetype='.filetype.' nofoldenable nospell')
   else
     silent call deletebufline(s:popup_bufnr, 1, '$')
-    call setbufline(s:popup_bufnr, 1, a:li
+    call setbufline(s:popup_bufnr, 1, a:lines)
+    call popup_show(s:popup_winid)
+    call popup_move(s:popup_winid, pos_opts)
+  endif
+
+  augroup VistaPopup
+    autocmd!
+    autocmd CursorMoved <buffer> call s:ClosePopup()
+    autocmd BufEnter,WinEnter,WinLeave * call s:ClosePopup()
+  augrou
