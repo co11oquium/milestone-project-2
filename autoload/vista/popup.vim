@@ -68,4 +68,15 @@ function! s:OpenPopup(lines) abort
     autocmd!
     autocmd CursorMoved <buffer> call s:ClosePopup()
     autocmd BufEnter,WinEnter,WinLeave * call s:ClosePopup()
-  augrou
+  augroup END
+
+  let g:vista.popup_visible = v:true
+endfunction
+
+function! s:DisplayRawAt(lnum, lines, vista_winid) abort
+  if win_getid() != a:vista_winid
+    return
+  endif
+
+  call s:OpenPopup(a:lines)
+endfun
