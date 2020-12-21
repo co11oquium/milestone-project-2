@@ -90,4 +90,11 @@ function! s:DisplayAt(lnum, tag, vista_winid) abort
 
   call s:OpenPopup(lines)
 
-  let target_line = lines[s:popup
+  let target_line = lines[s:popup_lnum - 1]
+  try
+    let [_, s:popup_start, s:popup_end] = matchstrpos(target_line, '\C'.a:tag)
+
+    " Highlight the tag in the popup window if found.
+    if s:popup_start > -1
+      call win_execute(s:popup_winid, 'call s:HiTag()')
+    en
