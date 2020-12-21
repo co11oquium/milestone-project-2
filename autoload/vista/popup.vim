@@ -79,4 +79,15 @@ function! s:DisplayRawAt(lnum, lines, vista_winid) abort
   endif
 
   call s:OpenPopup(a:lines)
-endfun
+endfunction
+
+function! s:DisplayAt(lnum, tag, vista_winid) abort
+  if win_getid() != a:vista_winid
+    return
+  endif
+
+  let [lines, s:popup_lnum] = vista#preview#GetLines(a:lnum)
+
+  call s:OpenPopup(lines)
+
+  let target_line = lines[s:popup
