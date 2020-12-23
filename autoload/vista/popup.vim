@@ -97,4 +97,14 @@ function! s:DisplayAt(lnum, tag, vista_winid) abort
     " Highlight the tag in the popup window if found.
     if s:popup_start > -1
       call win_execute(s:popup_winid, 'call s:HiTag()')
-    en
+    endif
+  catch /^Vim\%((\a\+)\)\=:E869/
+    call win_execute(s:popup_winid, 'call s:HiTagLine()')
+  endtry
+endfunction
+
+function! vista#popup#Close() abort
+  call s:ClosePopup()
+endfunction
+
+function! s:DispatchDisplayer(Displayer, ln
