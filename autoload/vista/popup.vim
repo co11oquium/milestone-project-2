@@ -107,4 +107,14 @@ function! vista#popup#Close() abort
   call s:ClosePopup()
 endfunction
 
-function! s:DispatchDisplayer(Displayer, ln
+function! s:DispatchDisplayer(Displayer, lnum, tag_or_raw_lines) abort
+  if a:lnum == s:last_lnum
+        \ || get(g:vista, 'popup_visible', v:false)
+    return
+  endif
+
+  silent! call timer_stop(s:popup_timer)
+
+  let s:last_lnum = a:lnum
+
+  let win_id = win_getid(
