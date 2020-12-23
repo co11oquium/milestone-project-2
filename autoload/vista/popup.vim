@@ -125,4 +125,9 @@ function! s:DispatchDisplayer(Displayer, lnum, tag_or_raw_lines) abort
 endfunction
 
 function! vista#popup#DisplayAt(lnum, tag) abort
-  call s:Dispatc
+  call s:DispatchDisplayer(function('s:DisplayAt'), a:lnum, a:tag)
+endfunction
+
+function! vista#popup#DisplayRawAt(lnum, lines) abort
+  call s:DispatchDisplayer(function('s:DisplayRawAt'), a:lnum, a:lines)
+endfunction
