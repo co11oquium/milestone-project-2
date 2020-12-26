@@ -10,3 +10,14 @@ let s:visibility_icon = {
       \ 'public': '+',
       \ 'protected': '~',
       \ 'private': '-',
+      \ }
+
+let g:vista#renderer#default#vlnum_offset = 3
+
+let s:indent_size = g:vista#renderer#enable_icon ? 2 : 4
+
+" Return the rendered row to be displayed given the depth
+function! s:Assemble(line, depth) abort
+  let line = a:line
+
+  let
