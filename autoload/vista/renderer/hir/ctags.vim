@@ -31,4 +31,17 @@ function! s:Assemble(line, depth) abort
         \ s:GetVisibility(line),
         \ kind_icon,
         \ get(line, 'name'),
-        \ get(line, 'signature
+        \ get(line, 'signature', ''),
+        \ kind_text,
+        \ ':'.get(line, 'line', '')
+        \ )
+
+  return row
+endfunction
+
+" Actually append to the rows
+function! s:Append(line, rows, depth) abort
+  let line = a:line
+  let rows = a:rows
+
+  let row = s:A
