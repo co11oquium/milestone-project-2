@@ -20,4 +20,8 @@ let s:indent_size = g:vista#renderer#enable_icon ? 2 : 4
 function! s:Assemble(line, depth) abort
   let line = a:line
 
-  let
+  let kind = get(line, 'kind', '')
+  let kind_icon = vista#renderer#IconFor(kind)
+  let kind_icon = empty(kind_icon) ? '' : kind_icon.' '
+  let kind_text = vista#renderer#KindFor(kind)
+  let kind_text = empt
