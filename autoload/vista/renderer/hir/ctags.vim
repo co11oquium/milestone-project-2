@@ -61,4 +61,13 @@ endfunction
 " Return the next root name and line after appending to the rows.
 function! s:AppendChild(line, rows, depth) abort
   if has_key(a:line, 'scope')
-    call s:Append(a:line, a:rows, a:
+    call s:Append(a:line, a:rows, a:depth)
+    let parent_name = a:line.scope
+    let next_root_name = parent_name . s:scope_seperator . a:line.name
+    return [next_root_name, a:line]
+  endif
+
+  return [v:null, v:null]
+endfunction
+
+function! s:Compare(s1, s2) abort
