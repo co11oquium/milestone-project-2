@@ -44,4 +44,15 @@ function! s:Append(line, rows, depth) abort
   let line = a:line
   let rows = a:rows
 
-  let row = s:A
+  let row = s:Assemble(line, a:depth)
+
+  call add(rows, row)
+  call add(s:vlnum_cache, line)
+endfunction
+
+function! s:ApplyAppend(line, row, rows) abort
+  let line = a:line
+  let rows = a:rows
+
+  call add(rows, a:row)
+  call add(s:vlnum
