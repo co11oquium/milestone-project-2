@@ -55,4 +55,10 @@ function! s:ApplyAppend(line, row, rows) abort
   let rows = a:rows
 
   call add(rows, a:row)
-  call add(s:vlnum
+  call add(s:vlnum_cache, line)
+endfunction
+
+" Return the next root name and line after appending to the rows.
+function! s:AppendChild(line, rows, depth) abort
+  if has_key(a:line, 'scope')
+    call s:Append(a:line, a:rows, a:
