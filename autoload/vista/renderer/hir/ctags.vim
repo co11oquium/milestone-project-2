@@ -71,3 +71,10 @@ function! s:AppendChild(line, rows, depth) abort
 endfunction
 
 function! s:Compare(s1, s2) abort
+  return a:s1.line - a:s2.line
+endfunction
+
+" This way is more of heuristic.
+"
+" the line of child should larger than parent's, which partially fixes this issue comment:
+" https://github.com/universal-ctags/ctags/issues/2065#issu
