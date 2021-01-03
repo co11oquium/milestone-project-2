@@ -94,4 +94,13 @@ function! s:RealParentOf(candidate) abort
   endfor
 
   if !empty(parent_candidates)
-    
+    call sort(parent_candidates, function('s:Compare'))
+    return parent_candidates[-1]
+  endif
+
+  return {}
+endfunction
+
+" Previously we use the regexp to see if the scope of candidate is matched:
+"
+" \ ' && v:val.scope =~# ''
