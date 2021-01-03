@@ -86,3 +86,12 @@ function! s:RealParentOf(candidate) abort
   let name = candidate.scope
   let kind = candidate.scopeKind
 
+  let parent_candidates = []
+  for pc in g:vista.without_scope
+    if pc.name ==# name && pc.kind ==# kind && pc.line <= candidate.line
+      call add(parent_candidates, pc)
+    endif
+  endfor
+
+  if !empty(parent_candidates)
+    
