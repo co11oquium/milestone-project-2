@@ -103,4 +103,9 @@ endfunction
 
 " Previously we use the regexp to see if the scope of candidate is matched:
 "
-" \ ' && v:val.scope =~# ''
+" \ ' && v:val.scope =~# ''^''.l:scope'.
+"
+" but it runs into the error like NFA E869 '\@ ' in some cases, so we use this
+" now. Ref #161
+function! s:StartWith(candidate_scope, root_scope) abort
+  return a:candidate_scope[:len(a:root_scope)] == a:root_scop
