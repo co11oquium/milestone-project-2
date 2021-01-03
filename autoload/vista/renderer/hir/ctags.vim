@@ -77,4 +77,12 @@ endfunction
 " This way is more of heuristic.
 "
 " the line of child should larger than parent's, which partially fixes this issue comment:
-" https://github.com/universal-ctags/ctags/issues/2065#issu
+" https://github.com/universal-ctags/ctags/issues/2065#issuecomment-485117935
+"
+" The previous nearest one should be the exact one.
+function! s:RealParentOf(candidate) abort
+  let candidate = a:candidate
+
+  let name = candidate.scope
+  let kind = candidate.scopeKind
+
