@@ -115,4 +115,10 @@ endfunction
 function! s:DescendantsOf(candidates, root_line, scope) abort
   let candidates = filter(copy(a:candidates),
         \ 'has_key(v:val, ''scope'')'.
-        \ ' && s:
+        \ ' && s:StartWith(v:val.scope, a:scope)'.
+        \ ' && v:val.scopeKind ==# a:root_line.kind'.
+        \ ' && v:val.line >= a:root_line.line'
+        \ )
+
+  return candidates
+  " The real parent problem seemingly has be
