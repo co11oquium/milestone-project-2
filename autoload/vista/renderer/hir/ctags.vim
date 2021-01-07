@@ -121,4 +121,10 @@ function! s:DescendantsOf(candidates, root_line, scope) abort
         \ )
 
   return candidates
-  " The real parent problem seemingly has be
+  " The real parent problem seemingly has been solved?
+  " return filter(candidates, 's:RealParentOf(v:val) ==# a:root_line')
+endfunction
+
+function! s:DescendantsOfRoot(candidates, root_line) abort
+  let candidates = filter(copy(a:candidates),
+        \ 'has_key(v:v
