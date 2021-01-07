@@ -127,4 +127,10 @@ endfunction
 
 function! s:DescendantsOfRoot(candidates, root_line) abort
   let candidates = filter(copy(a:candidates),
-        \ 'has_key(v:v
+        \ 'has_key(v:val, ''scope'')'.
+        \ ' && s:StartWith(v:val.scope, a:root_line.name)'.
+        \ ' && v:val.scopeKind ==# a:root_line.kind'.
+        \ ' && v:val.line >= a:root_line.line'
+        \ )
+
+  return filter(candidates, 's:RealPa
