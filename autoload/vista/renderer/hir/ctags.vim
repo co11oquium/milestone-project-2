@@ -133,4 +133,13 @@ function! s:DescendantsOfRoot(candidates, root_line) abort
         \ ' && v:val.line >= a:root_line.line'
         \ )
 
-  return filter(candidates, 's:RealPa
+  return filter(candidates, 's:RealParentOf(v:val) ==# a:root_line')
+endfunction
+
+function! s:RenderDescendants(parent_name, parent_line, descendants, rows, depth) abort
+  let depth = a:depth
+  let rows = a:rows
+
+  " Clear the previous duplicate parent line that is about to be added.
+  "
+  " T
