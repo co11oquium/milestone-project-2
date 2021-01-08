@@ -159,4 +159,12 @@ function! s:RenderDescendants(parent_name, parent_line, descendants, rows, depth
   let depth += 1
 
   " find all the children
-  let children = filter(copy(a:descendants), 'v:val.scope ==# a:parent_name'
+  let children = filter(copy(a:descendants), 'v:val.scope ==# a:parent_name')
+
+  let grandchildren = []
+  let grandchildren_line = []
+
+  for child in children
+    let [next_potentioal_root, next_potentioal_root_line] = s:AppendChild(child, rows, depth)
+    if !empty(next_potentioal_root)
+      call ad
