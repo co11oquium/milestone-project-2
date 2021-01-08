@@ -142,4 +142,10 @@ function! s:RenderDescendants(parent_name, parent_line, descendants, rows, depth
 
   " Clear the previous duplicate parent line that is about to be added.
   "
-  " T
+  " This is a little bit stupid actually :(.
+  let about_to_append = s:Assemble(a:parent_line, depth)
+  let idx = 0
+  while idx < len(rows)
+    if rows[idx] ==# about_to_append
+      unlet rows[idx]
+      unlet s:vlnum_cache
