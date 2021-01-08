@@ -148,4 +148,15 @@ function! s:RenderDescendants(parent_name, parent_line, descendants, rows, depth
   while idx < len(rows)
     if rows[idx] ==# about_to_append
       unlet rows[idx]
-      unlet s:vlnum_cache
+      unlet s:vlnum_cache[idx]
+    endif
+    let idx += 1
+  endwhile
+
+  " Append the root actually
+  call s:ApplyAppend(a:parent_line, about_to_append, rows)
+
+  let depth += 1
+
+  " find all the children
+  let children = filter(copy(a:descendants), 'v:val.scope ==# a:parent_name'
