@@ -167,4 +167,12 @@ function! s:RenderDescendants(parent_name, parent_line, descendants, rows, depth
   for child in children
     let [next_potentioal_root, next_potentioal_root_line] = s:AppendChild(child, rows, depth)
     if !empty(next_potentioal_root)
-      call ad
+      call add(grandchildren, next_potentioal_root)
+      call add(grandchildren_line, next_potentioal_root_line)
+    endif
+  endfor
+
+  let idx = 0
+  while idx < len(grandchildren)
+    let child_name = grandchildren[idx]
+    let chil
