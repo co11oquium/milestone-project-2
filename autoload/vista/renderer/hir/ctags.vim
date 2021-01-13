@@ -184,4 +184,12 @@ function! s:RenderDescendants(parent_name, parent_line, descendants, rows, depth
     endif
 
     let idx += 1
-  en
+  endwhile
+endfunction
+
+function! s:GetVisibility(line) abort
+  return has_key(a:line, 'access') ? get(s:visibility_icon, a:line.access, '?') : ''
+endfunction
+
+function! s:SortCompare(i1, i2) abort
+  return a:i1.na
