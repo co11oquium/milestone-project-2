@@ -175,4 +175,13 @@ function! s:RenderDescendants(parent_name, parent_line, descendants, rows, depth
   let idx = 0
   while idx < len(grandchildren)
     let child_name = grandchildren[idx]
-    let chil
+    let child_line = grandchildren_line[idx]
+
+    let descendants = s:DescendantsOf(g:vista.with_scope, child_line, child_name)
+
+    if !empty(descendants)
+      call s:RenderDescendants(child_name, child_line, descendants, a:rows, depth)
+    endif
+
+    let idx += 1
+  en
