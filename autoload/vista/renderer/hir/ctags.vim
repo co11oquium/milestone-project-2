@@ -200,4 +200,14 @@ function! s:RenderScopeless(scope_less, rows) abort
   let scope_less = a:scope_less
 
   for kind in keys(scope_less)
-    let kind_line = vista#renderer#Decorate(k
+    let kind_line = vista#renderer#Decorate(kind)
+    call add(rows, g:vista_fold_toggle_icons[0].' '.kind_line)
+
+    let lines = scope_less[kind]
+
+    if get(g:vista, 'sort', v:false)
+      let lines = sort(copy(lines), function('s:SortCompare'))
+    endif
+
+    for line in lines
+      let
