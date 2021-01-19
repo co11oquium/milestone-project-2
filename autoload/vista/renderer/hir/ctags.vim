@@ -192,4 +192,12 @@ function! s:GetVisibility(line) abort
 endfunction
 
 function! s:SortCompare(i1, i2) abort
-  return a:i1.na
+  return a:i1.name > a:i2.name
+endfunction
+
+function! s:RenderScopeless(scope_less, rows) abort
+  let rows = a:rows
+  let scope_less = a:scope_less
+
+  for kind in keys(scope_less)
+    let kind_line = vista#renderer#Decorate(k
