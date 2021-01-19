@@ -210,4 +210,11 @@ function! s:RenderScopeless(scope_less, rows) abort
     endif
 
     for line in lines
-      let
+      let row = vista#util#Join(
+            \ '  '.s:GetVisibility(line),
+            \ get(line, 'name'),
+            \ get(line, 'signature', ''),
+            \ ':'.line.line
+            \ )
+
+      call add(rows,
