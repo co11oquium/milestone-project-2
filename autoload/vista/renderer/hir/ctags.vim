@@ -243,4 +243,14 @@ function! s:Render() abort
   " to the original tagline.
   "
   " The item of s:vlnum_cache is some original tagline dict with
-  " `vlnum` field 
+  " `vlnum` field added later.
+  let s:vlnum_cache = []
+
+  let scope_less = {}
+
+  let without_scope = g:vista.without_scope
+
+  " The root of hierarchy structure doesn't have scope field.
+  for potential_root_line in without_scope
+
+    let r
