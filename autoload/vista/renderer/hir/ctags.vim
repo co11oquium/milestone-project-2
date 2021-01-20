@@ -228,4 +228,14 @@ function! s:RenderScopeless(scope_less, rows) abort
 
   " Remove the last line if it's empty, i.e., ''
   if !empty(rows) && empty(rows[-1])
-    unlet 
+    unlet rows[-1]
+  endif
+endfunction
+
+function! s:Render() abort
+  let s:scope_seperator = g:vista.source.scope_seperator()
+
+  let rows = []
+
+  " s:vlnum_cache is a cache for recording which original tagline
+ 
