@@ -217,4 +217,15 @@ function! s:RenderScopeless(scope_less, rows) abort
             \ ':'.line.line
             \ )
 
-      call add(rows,
+      call add(rows, row)
+
+      let line.vlnum = len(rows) + 2
+    endfor
+
+    call add(rows, '')
+    call add(s:vlnum_cache, '')
+  endfor
+
+  " Remove the last line if it's empty, i.e., ''
+  if !empty(rows) && empty(rows[-1])
+    unlet 
