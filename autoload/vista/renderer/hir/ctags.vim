@@ -253,4 +253,10 @@ function! s:Render() abort
   " The root of hierarchy structure doesn't have scope field.
   for potential_root_line in without_scope
 
-    let r
+    let root_name = potential_root_line.name
+
+    let descendants = s:DescendantsOfRoot(g:vista.with_scope, potential_root_line)
+
+    if !empty(descendants)
+
+      call s:RenderDescendants(root_name, potential_root_line, descendants,
