@@ -259,4 +259,12 @@ function! s:Render() abort
 
     if !empty(descendants)
 
-      call s:RenderDescendants(root_name, potential_root_line, descendants,
+      call s:RenderDescendants(root_name, potential_root_line, descendants, rows, 0)
+
+      call add(rows, '')
+      call add(s:vlnum_cache, '')
+
+    else
+
+      if has_key(potential_root_line, 'kind')
+        call vista#util#TryAdd(scope_less, potential_root_line
