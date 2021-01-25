@@ -267,4 +267,16 @@ function! s:Render() abort
     else
 
       if has_key(potential_root_line, 'kind')
-        call vista#util#TryAdd(scope_less, potential_root_line
+        call vista#util#TryAdd(scope_less, potential_root_line.kind, potential_root_line)
+      endif
+
+    endif
+
+  endfor
+
+  call s:RenderScopeless(scope_less, rows)
+
+  " The original tagline is positioned in which line in the vista sidebar.
+  let idx = 0
+  while idx < len(s:vlnum_cache)
+ 
