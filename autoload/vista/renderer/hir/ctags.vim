@@ -279,4 +279,7 @@ function! s:Render() abort
   " The original tagline is positioned in which line in the vista sidebar.
   let idx = 0
   while idx < len(s:vlnum_cache)
- 
+    if !empty(s:vlnum_cache[idx])
+      " idx is 0-based, while the line number is 1-based, and we prepend the
+      " two lines first, so the final offset is 1+2=3
+      let s:vlnum_cache[idx].vlnum = idx + g:vista#rendere
