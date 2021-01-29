@@ -297,4 +297,5 @@ function! vista#renderer#hir#ctags#Render() abort
     return []
   endif
 
-  
+  return s:Render()
+endfunction
