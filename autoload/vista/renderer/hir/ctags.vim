@@ -282,4 +282,19 @@ function! s:Render() abort
     if !empty(s:vlnum_cache[idx])
       " idx is 0-based, while the line number is 1-based, and we prepend the
       " two lines first, so the final offset is 1+2=3
-      let s:vlnum_cache[idx].vlnum = idx + g:vista#rendere
+      let s:vlnum_cache[idx].vlnum = idx + g:vista#renderer#default#vlnum_offset
+    endif
+    let idx += 1
+  endwhile
+
+  let g:vista.vlnum_cache = s:vlnum_cache
+
+  return rows
+endfunction
+
+function! vista#renderer#hir#ctags#Render() abort
+  if empty(g:vista.raw)
+    return []
+  endif
+
+  
