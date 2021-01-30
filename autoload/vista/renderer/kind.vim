@@ -22,4 +22,16 @@ function! s:viewer.init(data) abort
   elseif up_gap >= 4
     let self.gap = up_gap / 2
   else
-    let self.gap = up_gap + strwidth(self.prefi
+    let self.gap = up_gap + strwidth(self.prefixes[1])/2
+  endif
+endfunction
+
+function! s:ContainWhitespaceOnly(str) abort
+  return a:str !~# '\S'
+endfunction
+
+function! s:Compare(i1, i2) abort
+  return a:i1.text > a:i2.text
+endfunction
+
+function! s:viewer.render() a
