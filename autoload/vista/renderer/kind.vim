@@ -14,4 +14,12 @@ function! s:viewer.init(data) abort
   let self.prefixes = g:vista_icon_indent
 
   " TODO improve me!
-  let up_gap = strwidth
+  let up_gap = strwidth(self.prefixes[0])
+  " By default the gap is half of the second prefix.
+  " at least one
+  if up_gap >= 2 && up_gap < 4
+    let self.gap = up_gap
+  elseif up_gap >= 4
+    let self.gap = up_gap / 2
+  else
+    let self.gap = up_gap + strwidth(self.prefi
