@@ -34,4 +34,10 @@ function! s:Compare(i1, i2) abort
   return a:i1.text > a:i2.text
 endfunction
 
-function! s:viewer.render() a
+function! s:viewer.render() abort
+  let try_adjust = self.prefixes[0] != self.prefixes[1]
+
+  " prefixes[0] scope [children_num]
+  "   prefixes[1] tag:num
+  for [kind, v] in items(self.data)
+    let parent = self.prefixes[0] .vista#renderer#Decorate(kind
