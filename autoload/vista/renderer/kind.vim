@@ -59,4 +59,11 @@ function! s:viewer.render() abort
                 \ i.text,
                 \ ':'.i.lnum
                 \ )
-          call add(self.r
+          call add(self.rows, row)
+        endif
+      endfor
+
+      if !s:ContainWhitespaceOnly(self.prefixes[1]) && try_adjust
+        " Adjust the prefix of last item in each scope
+        let tag_colon_num = split(self.rows[-1], ' ')[1:]
+        let self.rows[-1] = repeat(' ', s
