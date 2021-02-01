@@ -40,4 +40,15 @@ function! s:viewer.render() abort
   " prefixes[0] scope [children_num]
   "   prefixes[1] tag:num
   for [kind, v] in items(self.data)
-    let parent = self.prefixes[0] .vista#renderer#Decorate(kind
+    let parent = self.prefixes[0] .vista#renderer#Decorate(kind).' ['.len(v).']'
+    " Parent
+    call add(self.rows, parent)
+
+    if !empty(v)
+
+      if get(g:vista, 'sort', v:false)
+        let v = sort(copy(v), function('s:Compare'))
+      endif
+
+      " Children
+      for i in 
