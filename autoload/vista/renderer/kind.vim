@@ -51,4 +51,12 @@ function! s:viewer.render() abort
       endif
 
       " Children
-      for i in 
+      for i in v
+        if len(i) > 0
+          let row = vista#util#Join(
+                \ repeat(' ', self.gap),
+                \ self.prefixes[1],
+                \ i.text,
+                \ ':'.i.lnum
+                \ )
+          call add(self.r
