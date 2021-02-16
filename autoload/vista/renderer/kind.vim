@@ -80,3 +80,11 @@ function! s:viewer.render() abort
 
   return self.rows
 endfunction
+
+function! vista#renderer#kind#Render(data) abort
+  if empty(a:data)
+    return []
+  endif
+  call s:viewer.init(a:data)
+  return s:viewer.render()
+endfunction
