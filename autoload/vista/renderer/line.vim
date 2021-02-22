@@ -23,4 +23,11 @@ function! s:RenderLinewise() abort
     if has_key(line, 'access')
       let access = get(s:visibility_icon, line.access, '?')
     else
-      let access
+      let access = ''
+    endif
+
+    if !exists('s:last_kind') || has_key(line, 'kind') && s:last_kind != line.kind
+      call add(rows, vista#renderer#Decorate(line.kind))
+      let s:last_kind = get(line, 'kind')
+      continue
+    endif
