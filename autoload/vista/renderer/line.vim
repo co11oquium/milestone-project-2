@@ -31,3 +31,11 @@ function! s:RenderLinewise() abort
       let s:last_kind = get(line, 'kind')
       continue
     endif
+
+    let row = vista#util#Join('  '.access, get(line, 'name'), get(line, 'signature', ''), ':'.line.line)
+
+    call add(rows, row)
+
+    " Inject vlnum.
+    " Since we prepend the fpath and a blank line, the vlnum should plus 2.
+    let line.vlnum = l
