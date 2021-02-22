@@ -13,4 +13,14 @@ let s:visibility_icon = {
 function! s:RenderLinewise() abort
   let rows = []
 
-  " FIXME the same kind tags could be in serve
+  " FIXME the same kind tags could be in serveral sections
+  let idx = 0
+  let raw_len = len(g:vista.raw)
+
+  while idx < raw_len
+    let line = g:vista.raw[idx]
+
+    if has_key(line, 'access')
+      let access = get(s:visibility_icon, line.access, '?')
+    else
+      let access
