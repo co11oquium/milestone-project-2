@@ -38,4 +38,16 @@ function! s:RenderLinewise() abort
 
     " Inject vlnum.
     " Since we prepend the fpath and a blank line, the vlnum should plus 2.
-    let line.vlnum = l
+    let line.vlnum = len(rows) + 2
+
+    " Append a blank line in the last of a section.
+    if has_key(line, 'kind') && idx < raw_len - 1
+      if line.kind != get(g:vista.raw[idx+1], 'kind')
+        call add(rows, '')
+      endif
+    endif
+
+    let idx += 1
+  endwhile
+
+ 
