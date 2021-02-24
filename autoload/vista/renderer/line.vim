@@ -50,4 +50,15 @@ function! s:RenderLinewise() abort
     let idx += 1
   endwhile
 
- 
+  unlet s:last_kind
+
+  return rows
+endfunction
+
+function! vista#renderer#line#Render() abort
+  if empty(g:vista.raw)
+    return []
+  endif
+
+  return s:RenderLinewise()
+endfunction
