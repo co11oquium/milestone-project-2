@@ -25,3 +25,29 @@ function! s:BuildRow(idx, line) abort
 endfunction
 
 " Given the metadata of headers of markdown, return the rendered lines to display.
+"
+" line.lnum is 1-based.
+"
+" The metadata of markdown headers is a List of Dict:
+" {'lnum': 1, 'level': '4', 'text': 'Vista.vim'}
+function! s:MD(idx, line) abort
+  return s:BuildRow(a:idx, a:line)
+endfunction
+
+" The metadata of rst headers is a List of Dict:
+" {'lnum': 1, 'level': '4', 'text': 'Vista.vim'}
+function! s:RST(idx, line) abort
+  return s:BuildRow(a:idx, a:line)
+endfunction
+
+" markdown
+function! vista#renderer#markdown_like#MD(data) abort
+  let s:data = a:data
+  return map(a:data, 's:MD(v:key, v:val)')
+endfunction
+
+" restructuredText
+function! vista#renderer#markdown_like#RST(data) abort
+  let s:data = a:data
+  return map(a:data, 's:RST(v:key, v:val)')
+endfunction
