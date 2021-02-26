@@ -40,3 +40,8 @@ function! vista#toc#Run() abort
       call vista#executive#{explicit_executive}#Execute(v:false, v:true, v:false)
     else
       call s:TryRunExtension()
+    endif
+  else
+    call s:TryRunExtension()
+  endif
+endfunction
