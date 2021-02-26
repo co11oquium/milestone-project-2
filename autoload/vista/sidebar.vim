@@ -67,3 +67,90 @@ function! vista#sidebar#OpenOrUpdate(rows) abort
     let g:vista.winid = win_getid()
     let g:vista.pos = [winsaveview(), winnr(), winrestcmd()]
   else
+    let winnr = g:vista.winnr()
+    if winnr == -1
+      call s:NewWindow()
+    elseif winnr() != winnr
+      noautocmd execute winnr.'wincmd w'
+    endif
+  endif
+
+  call vista#util#SetBufline(g:vista.bufnr, a:rows)
+
+  if has_key(g:vista, 'lnum')
+    call vista#cursor#ShowTagFor(g:vista.lnum)
+    unlet g:vista.lnum
+  endif
+
+  if !g:vista_stay_on_open
+    wincmd p
+  endif
+endfunction
+
+function! vista#sidebar#Close() abort
+  if exists('g:vista.bufnr')
+    let winnr = g:vista.winnr()
+
+    " Jump back to the previous window if we are in the vista sidebar atm.
+    if winnr == winnr()
+      wincmd p
+    endif
+
+    if winnr != -1
+      noautocmd execute winnr.'wincmd c'
+    endif
+
+    silent execute  g:vista.bufnr.'bwipe!'
+    unlet g:vista.bufnr
+  endif
+
+  call s:ClearAugroups('VistaCoc', 'VistaCtags')
+
+  call vista#win#CloseFloating()
+endfunction
+
+function! s:ClearAugroups(...) abort
+  for aug in a:000
+    if exists('#'.aug)
+      execute 'autocmd!' aug
+    endif
+  endfor
+endfunction
+
+function! vista#sidebar#Open() abort
+  let [bufnr, winnr, fname, fpath] = [bufnr('%'), winnr(), expand('%'), expand('%:p')]
+  call vista#source#Update(bufnr, winnr, fname, fpath)
+
+  " Support the builtin markdown toc extension as an executive
+  if vista#toc#IsSupported(&filetype)
+    call vista#toc#Run()
+  else
+    let executive = vista#GetExplicitExecutiveOrDefault()
+    call vista#executive#{executive}#Execute(v:false, v:true, v:false)
+  endif
+endfunction
+
+function! vista#sidebar#IsOpen() abort
+  return bufwinnr('__vista__') != -1
+endfunction
+
+function! vista#sidebar#ToggleFocus() abort
+  if !exists('g:vista') || g:vista.winnr() == -1
+    call vista#sidebar#Open()
+    return
+  endif
+  let winnr = g:vista.winnr()
+  if winnr != winnr()
+    execute winnr.'wincmd w'
+  else
+    execute g:vista.source.get_winnr().'wincmd w'
+  endif
+endfunction
+
+function! vista#sidebar#Toggle() abort
+  if vista#sidebar#IsOpen()
+    call vista#sidebar#Close()
+  else
+    call vista#sidebar#Open()
+  endif
+endfunction
