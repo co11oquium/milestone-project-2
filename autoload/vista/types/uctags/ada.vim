@@ -9,4 +9,7 @@ let s:types.kinds = {
     \ 't': {'long' : 'types',                         'fold' : 0, 'stl' : 1},
     \ 'u': {'long' : 'subtypes',                      'fold' : 0, 'stl' : 1},
     \ 'c': {'long' : 'record type components',        'fold' : 0, 'stl' : 1},
-    \ 'l': {'long' : '
+    \ 'l': {'long' : 'enum type literals',            'fold' : 0, 'stl' : 0},
+    \ 'v': {'long' : 'variables',                     'fold' : 0, 'stl' : 0},
+    \ 'f': {'long' : 'generic formal parameters',     'fold' : 0, 'stl' : 0},
+    \ 
