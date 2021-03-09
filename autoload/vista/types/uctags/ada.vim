@@ -12,4 +12,6 @@ let s:types.kinds = {
     \ 'l': {'long' : 'enum type literals',            'fold' : 0, 'stl' : 0},
     \ 'v': {'long' : 'variables',                     'fold' : 0, 'stl' : 0},
     \ 'f': {'long' : 'generic formal parameters',     'fold' : 0, 'stl' : 0},
-    \ 
+    \ 'n': {'long' : 'constants',                     'fold' : 0, 'stl' : 0},
+    \ 'x': {'long' : 'user defined exceptions',       'fold' : 0, 'stl' : 1},
+    \ 'R': {'long' : 'subprogram specifications',     'fold' : 0, 'st
