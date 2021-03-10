@@ -17,4 +17,7 @@ let s:types.kinds = {
     \ 'R': {'long' : 'subprogram specifications',     'fold' : 0, 'stl' : 1},
     \ 'r': {'long' : 'subprograms',                   'fold' : 0, 'stl' : 1},
     \ 'K': {'long' : 'task specifications',           'fold' : 0, 'stl' : 1},
-    \ 'k': {'long' : 'tasks',                
+    \ 'k': {'long' : 'tasks',                         'fold' : 0, 'stl' : 1},
+    \ 'O': {'long' : 'protected data specifications', 'fold' : 0, 'stl' : 1},
+    \ 'o': {'long' : 'protected data',                'fold' : 0, 'stl' : 1},
+    \ 'e': {'long' : 'task/protec
