@@ -14,4 +14,7 @@ let s:types.kinds = {
     \ 'f': {'long' : 'generic formal parameters',     'fold' : 0, 'stl' : 0},
     \ 'n': {'long' : 'constants',                     'fold' : 0, 'stl' : 0},
     \ 'x': {'long' : 'user defined exceptions',       'fold' : 0, 'stl' : 1},
-    \ 'R': {'long' : 'subprogram specifications',     'fold' : 0, 'st
+    \ 'R': {'long' : 'subprogram specifications',     'fold' : 0, 'stl' : 1},
+    \ 'r': {'long' : 'subprograms',                   'fold' : 0, 'stl' : 1},
+    \ 'K': {'long' : 'task specifications',           'fold' : 0, 'stl' : 1},
+    \ 'k': {'long' : 'tasks',                
