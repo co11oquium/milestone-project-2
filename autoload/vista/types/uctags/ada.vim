@@ -20,4 +20,7 @@ let s:types.kinds = {
     \ 'k': {'long' : 'tasks',                         'fold' : 0, 'stl' : 1},
     \ 'O': {'long' : 'protected data specifications', 'fold' : 0, 'stl' : 1},
     \ 'o': {'long' : 'protected data',                'fold' : 0, 'stl' : 1},
-    \ 'e': {'long' : 'task/protec
+    \ 'e': {'long' : 'task/protected data entries',   'fold' : 0, 'stl' : 1},
+    \ 'b': {'long' : 'labels',                        'fold' : 0, 'stl' : 1},
+    \ 'i': {'long' : 'loop/declare identifiers',      'fold' : 0, 'stl' : 1},
+   
