@@ -23,4 +23,18 @@ let s:types.kinds = {
     \ 'e': {'long' : 'task/protected data entries',   'fold' : 0, 'stl' : 1},
     \ 'b': {'long' : 'labels',                        'fold' : 0, 'stl' : 1},
     \ 'i': {'long' : 'loop/declare identifiers',      'fold' : 0, 'stl' : 1},
-   
+    \ }
+
+let s:types.sro = '.' " Not sure if possible
+
+let s:types.kind2scope = {
+    \ 'P' : 'packspec',
+    \ 't' : 'type',
+    \ }
+
+let s:types.scope2kind = {
+    \ 'packspec' : 'P',
+    \ 'type'     : 't',
+    \ }
+
+let g:vista#types#u
