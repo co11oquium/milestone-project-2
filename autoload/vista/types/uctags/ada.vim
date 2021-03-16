@@ -37,4 +37,4 @@ let s:types.scope2kind = {
     \ 'type'     : 't',
     \ }
 
-let g:vista#types#u
+let g:vista#types#uctags#ada# = s:types
