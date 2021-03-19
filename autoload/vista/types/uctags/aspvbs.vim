@@ -12,4 +12,4 @@ let s:types.kinds = {
     \ }
 
 " aspperl aspvbs
-let g:vista#types#uctags#aspv
+let g:vista#types#uctags#aspvbs# = s:types
