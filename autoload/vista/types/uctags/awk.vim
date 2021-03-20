@@ -7,4 +7,4 @@ let s:types.kinds = {
   \ 'f': {'long' : 'functions', 'fold' : 0, 'stl' : 1}
   \ }
 
-let g:vista#types#uct
+let g:vista#types#uctags#awk# = s:types
