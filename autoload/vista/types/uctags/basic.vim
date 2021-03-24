@@ -9,4 +9,7 @@ let s:types.kinds = {
     \ 'f': {'long' : 'functions',    'fold' : 0, 'stl' : 1},
     \ 'l': {'long' : 'labels',       'fold' : 0, 'stl' : 1},
     \ 't': {'long' : 'types',        'fold' : 0, 'stl' : 1},
-    \ 'v':
+    \ 'v': {'long' : 'variables',    'fold' : 0, 'stl' : 1}
+    \ }
+
+let g:vista#types#uctags#basic# = s:types
