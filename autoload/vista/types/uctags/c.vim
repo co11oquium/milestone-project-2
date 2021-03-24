@@ -23,3 +23,13 @@ let s:types.sro = '::'
 let s:types.kind2scope = {
     \ 'g' : 'enum',
     \ 's' : 'struct',
+    \ 'u' : 'union'
+    \ }
+
+let s:types.scope2kind = {
+    \ 'enum'   : 'g',
+    \ 'struct' : 's',
+    \ 'union'  : 'u'
+    \ }
+
+let g:vista#types#uctags#c# = s:types
