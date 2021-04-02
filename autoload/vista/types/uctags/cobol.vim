@@ -11,4 +11,7 @@ let s:types.kinds = {
     \ 'p': {'long' : 'paragraphs',        'fold' : 0, 'stl' : 1},
     \ 'P': {'long' : 'program ids',       'fold' : 0, 'stl' : 1},
     \ 'S': {'long' : 'source code file',  'fold' : 0, 'stl' : 1},
-    
+    \ 's': {'long' : 'sections',          'fold' : 0, 'stl' : 1}
+    \ }
+
+let g:vista#types#uctags#cobol# = s:types
