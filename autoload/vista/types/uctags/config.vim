@@ -7,4 +7,7 @@ let s:types.kinds = {
     \ 'p': {'long': 'packages',            'fold': 0, 'stl': 1},
     \ 't': {'long': 'templates',           'fold': 0, 'stl': 1},
     \ 'm': {'long': 'autoconf macros',     'fold': 0, 'stl': 1},
-    \ 'w': {'long': '"with" options',   
+    \ 'w': {'long': '"with" options',      'fold': 0, 'stl': 1},
+    \ 'e': {'long': '"enable" options',    'fold': 0, 'stl': 1},
+    \ 's': {'long': 'substitution keys',   'fold': 0, 'stl': 1},
+    \ 'c': {'long': 'automake conditions', 'fold': 0
