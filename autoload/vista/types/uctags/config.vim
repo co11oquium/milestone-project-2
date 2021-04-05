@@ -10,4 +10,8 @@ let s:types.kinds = {
     \ 'w': {'long': '"with" options',      'fold': 0, 'stl': 1},
     \ 'e': {'long': '"enable" options',    'fold': 0, 'stl': 1},
     \ 's': {'long': 'substitution keys',   'fold': 0, 'stl': 1},
-    \ 'c': {'long': 'automake conditions', 'fold': 0
+    \ 'c': {'long': 'automake conditions', 'fold': 0, 'stl': 1},
+    \ 'd': {'long': 'definitions',         'fold': 0, 'stl': 1}
+    \ }
+
+let g:vista#types#uctags#config# = s:types
