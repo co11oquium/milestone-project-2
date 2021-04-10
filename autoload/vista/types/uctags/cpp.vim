@@ -36,4 +36,7 @@ let s:types.scope2kind = {
     \ 'class'     : 'c',
     \ 'struct'    : 's',
     \ 'union'     : 'u'
-  
+    \ }
+
+" cpp cuda
+let g:vista#types#uctags#cpp# = s:types
