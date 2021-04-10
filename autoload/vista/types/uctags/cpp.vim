@@ -24,4 +24,16 @@ let s:types.sro = '::'
 
 let s:types.kind2scope = {
     \ 'g' : 'enum',
-    \ 'n' : '
+    \ 'n' : 'namespace',
+    \ 'c' : 'class',
+    \ 's' : 'struct',
+    \ 'u' : 'union'
+    \ }
+
+let s:types.scope2kind = {
+    \ 'enum'      : 'g',
+    \ 'namespace' : 'n',
+    \ 'class'     : 'c',
+    \ 'struct'    : 's',
+    \ 'union'     : 'u'
+  
