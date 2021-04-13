@@ -10,4 +10,7 @@ let s:types.kinds = {
     \ 'g': {'long' : 'enums',       'fold' : 0, 'stl' : 1},
     \ 'e': {'long' : 'enumerators', 'fold' : 0, 'stl' : 0},
     \ 't': {'long' : 'typedefs',    'fold' : 0, 'stl' : 1},
-    \ 'n': {'long' : '
+    \ 'n': {'long' : 'namespaces',  'fold' : 0, 'stl' : 1},
+    \ 'i': {'long' : 'interfaces',  'fold' : 0, 'stl' : 1},
+    \ 'c': {'long' : 'classes',     'fold' : 0, 'stl' : 1},
+    \ 's': {'long' : 'structs',     'fold' : 0, 
