@@ -13,4 +13,8 @@ let s:types.kinds = {
     \ 'n': {'long' : 'namespaces',  'fold' : 0, 'stl' : 1},
     \ 'i': {'long' : 'interfaces',  'fold' : 0, 'stl' : 1},
     \ 'c': {'long' : 'classes',     'fold' : 0, 'stl' : 1},
-    \ 's': {'long' : 'structs',     'fold' : 0, 
+    \ 's': {'long' : 'structs',     'fold' : 0, 'stl' : 1},
+    \ 'E': {'long' : 'events',      'fold' : 0, 'stl' : 1},
+    \ 'm': {'long' : 'methods',     'fold' : 0, 'stl' : 1},
+    \ 'p': {'long' : 'properties',  'fold' : 0, 'stl' : 1}
+    \ 
