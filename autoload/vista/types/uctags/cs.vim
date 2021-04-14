@@ -30,4 +30,11 @@ let s:types.kind2scope = {
     \ }
 
 let s:types.scope2kind = {
-    \ 'namespac
+    \ 'namespace' : 'n',
+    \ 'interface' : 'i',
+    \ 'class'     : 'c',
+    \ 'struct'    : 's',
+    \ 'enum'      : 'g'
+    \ }
+
+let g:vista#types#uctags#cs# = s:types
