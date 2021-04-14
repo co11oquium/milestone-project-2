@@ -17,4 +17,17 @@ let s:types.kinds = {
     \ 'E': {'long' : 'events',      'fold' : 0, 'stl' : 1},
     \ 'm': {'long' : 'methods',     'fold' : 0, 'stl' : 1},
     \ 'p': {'long' : 'properties',  'fold' : 0, 'stl' : 1}
-    \ 
+    \ }
+
+let s:types.sro = '.'
+
+let s:types.kind2scope = {
+    \ 'n' : 'namespace',
+    \ 'i' : 'interface',
+    \ 'c' : 'class',
+    \ 's' : 'struct',
+    \ 'g' : 'enum'
+    \ }
+
+let s:types.scope2kind = {
+    \ 'namespac
