@@ -16,4 +16,7 @@ let s:types.kind2scope = {
     \ }
 
 let s:types.scope2kind = {
-    \ 'la
+    \ 'langdef' : 'l',
+    \ }
+
+let g:vista#types#uctags#ctags# = s:types
