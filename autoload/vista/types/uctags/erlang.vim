@@ -18,3 +18,9 @@ let s:types.sro        = '.' " Not sure, is nesting even possible?
 let s:types.kind2scope = {
     \ 'm' : 'module'
     \ }
+
+let s:types.scope2kind = {
+    \ 'module' : 'm'
+    \ }
+
+let g:vista#types#uctags#erlang# = s:types
