@@ -13,4 +13,7 @@ let s:types.kinds = {
     \ 'b': {'long' : 'block data',    'fold' : 0, 'stl' : 0},
     \ 'E': {'long' : 'enumerations',  'fold' : 0, 'stl' : 1},
     \ 'N': {'long' : 'enumeration values', 'fold' : 0, 'stl' : 0},
-    \ 'e': {'long' : 'entry
+    \ 'e': {'long' : 'entry points',  'fold' : 0, 'stl' : 1},
+    \ 'f': {'long' : 'functions',     'fold' : 0, 'stl' : 1},
+    \ 's': {'long' : 'subroutines',   'fold' : 0, 'stl' : 1},
+    \ 'M': {'long' : 'type bound procedu
