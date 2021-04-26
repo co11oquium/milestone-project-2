@@ -16,4 +16,8 @@ let s:types.kinds = {
     \ 'e': {'long' : 'entry points',  'fold' : 0, 'stl' : 1},
     \ 'f': {'long' : 'functions',     'fold' : 0, 'stl' : 1},
     \ 's': {'long' : 'subroutines',   'fold' : 0, 'stl' : 1},
-    \ 'M': {'long' : 'type bound procedu
+    \ 'M': {'long' : 'type bound procedures',   'fold' : 0,'stl' : 1},
+    \ 'l': {'long' : 'labels',        'fold' : 0, 'stl' : 1},
+    \ 'n': {'long' : 'namelists',     'fold' : 0, 'stl' : 1},
+    \ 'v': {'long' : 'variables',     'fold' : 0, 'stl' : 0}
+    \ }
