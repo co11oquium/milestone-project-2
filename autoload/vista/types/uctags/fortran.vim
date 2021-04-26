@@ -21,3 +21,14 @@ let s:types.kinds = {
     \ 'n': {'long' : 'namelists',     'fold' : 0, 'stl' : 1},
     \ 'v': {'long' : 'variables',     'fold' : 0, 'stl' : 0}
     \ }
+
+let s:types.sro = '.' " Not sure, is nesting even possible?
+
+let s:types.kind2scope = {
+    \ 'm' : 'module',
+    \ 'p' : 'program',
+    \ 'f' : 'function',
+    \ 's' : 'subroutine'
+    \ }
+
+let s:types.scope2kind =
