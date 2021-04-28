@@ -31,4 +31,11 @@ let s:types.kind2scope = {
     \ 's' : 'subroutine'
     \ }
 
-let s:types.scope2kind =
+let s:types.scope2kind = {
+    \ 'module'     : 'm',
+    \ 'program'    : 'p',
+    \ 'function'   : 'f',
+    \ 'subroutine' : 's'
+    \ }
+
+let g:vista#types#uctags#fortran# = s:types
