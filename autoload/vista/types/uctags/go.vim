@@ -12,4 +12,12 @@ let type_go.kinds = {
     \ 's': {'long' : 'structs',        'fold' : 0, 'stl' : 1},
     \ 'm': {'long' : 'methods',        'fold' : 0, 'stl' : 0},
     \ 't': {'long' : 'types',          'fold' : 0, 'stl' : 1},
-    \ 'f': {'long' : 'functions',      'fold' 
+    \ 'f': {'long' : 'functions',      'fold' : 0, 'stl' : 1},
+    \ 'v': {'long' : 'variables',      'fold' : 0, 'stl' : 0},
+    \ 'w': {'long' : 'struct members', 'fold' : 0, 'stl' : 0}
+    \ }
+
+let type_go.sro = '.'
+
+let type_go.kind2scope = {
+    
