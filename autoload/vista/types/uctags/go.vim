@@ -8,4 +8,8 @@ let type_go.kinds = {
     \ 'p': {'long' : 'packages',       'fold' : 0, 'stl' : 0},
     \ 'i': {'long' : 'imports',        'fold' : 0, 'stl' : 0},
     \ 'n': {'long' : 'interfaces',     'fold' : 0, 'stl' : 0},
-    \ 'c': {'long' : 'constants',      'fold' : 0, 'stl' : 
+    \ 'c': {'long' : 'constants',      'fold' : 0, 'stl' : 0},
+    \ 's': {'long' : 'structs',        'fold' : 0, 'stl' : 1},
+    \ 'm': {'long' : 'methods',        'fold' : 0, 'stl' : 0},
+    \ 't': {'long' : 'types',          'fold' : 0, 'stl' : 1},
+    \ 'f': {'long' : 'functions',      'fold' 
