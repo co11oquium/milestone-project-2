@@ -20,4 +20,11 @@ let type_go.kinds = {
 let type_go.sro = '.'
 
 let type_go.kind2scope = {
-    
+    \ 's' : 'struct'
+    \ }
+
+let type_go.scope2kind = {
+    \ 'struct' : 's'
+    \ }
+
+let g:vista#types#uctags#go# = type_go
