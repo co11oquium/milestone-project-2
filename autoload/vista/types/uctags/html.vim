@@ -11,4 +11,4 @@ let s:types.kinds = {
     \ 'j': {'long' : 'H3 headings',   'fold' : 0, 'stl' : 1},
     \ }
 
-let g:vist
+let g:vista#types#uctags#html# = s:types
