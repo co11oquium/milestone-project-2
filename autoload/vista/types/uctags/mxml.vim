@@ -10,4 +10,7 @@ let s:types.lang = 'flex'
 
 let s:types.kinds = {
     \ 'v': {'long' : 'global variables', 'fold' : 0, 'stl' : 0},
-    \ 'c': {'long' : 'clas
+    \ 'c': {'long' : 'classes',          'fold' : 0, 'stl' : 1},
+    \ 'm': {'long' : 'methods',          'fold' : 0, 'stl' : 1},
+    \ 'p': {'long' : 'properties',       'fold' : 0, 'stl' : 1},
+    \ 'f': {'long' : 'functions',        '
