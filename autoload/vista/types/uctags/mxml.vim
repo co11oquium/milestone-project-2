@@ -13,4 +13,14 @@ let s:types.kinds = {
     \ 'c': {'long' : 'classes',          'fold' : 0, 'stl' : 1},
     \ 'm': {'long' : 'methods',          'fold' : 0, 'stl' : 1},
     \ 'p': {'long' : 'properties',       'fold' : 0, 'stl' : 1},
-    \ 'f': {'long' : 'functions',        '
+    \ 'f': {'long' : 'functions',        'fold' : 0, 'stl' : 1},
+    \ 'x': {'long' : 'mxtags',           'fold' : 0, 'stl' : 0}
+    \ }
+
+let s:types.sro        = '.'
+
+let s:types.kind2scope = {
+    \ 'c' : 'class'
+    \ }
+
+let s:types.scope2kind =
