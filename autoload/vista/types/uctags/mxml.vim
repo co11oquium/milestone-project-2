@@ -23,4 +23,8 @@ let s:types.kind2scope = {
     \ 'c' : 'class'
     \ }
 
-let s:types.scope2kind =
+let s:types.scope2kind = {
+    \ 'class' : 'c'
+    \ }
+
+let g:vista#types#uctags#mxml# = s:types
