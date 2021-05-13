@@ -11,4 +11,13 @@ let s:types.kinds = {
     \ 'i': {'long' : 'interfaces',           'fold' : 0, 'stl' : 1},
     \ 't': {'long' : 'traits',               'fold' : 0, 'stl' : 1},
     \ 'c': {'long' : 'classes',              'fold' : 0, 'stl' : 1},
-    \ 'v': {'long' : 'variables',    
+    \ 'v': {'long' : 'variables',            'fold' : 1, 'stl' : 0},
+    \ 'f': {'long' : 'functions',            'fold' : 0, 'stl' : 1}
+    \ }
+
+let s:types.sro = '\\'
+
+let s:types.kind2scope = {
+    \ 'c' : 'class',
+    \ 'n' : 'namespace',
+    \ 'i' : 'in
