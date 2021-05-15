@@ -31,4 +31,4 @@ let s:types.scope2kind = {
     \ 'trait'     : 't',
     \ }
 
-let g:vista#types#uctags#php# = s:type
+let g:vista#types#uctags#php# = s:types
