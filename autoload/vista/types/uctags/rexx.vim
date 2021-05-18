@@ -8,4 +8,4 @@ let s:types.kinds     = {
     \ 's': {'long' : 'subroutines', 'fold' : 0, 'stl' : 1}
     \ }
 
-let g:vi
+let g:vista#types#uctags#rexx# = s:types
