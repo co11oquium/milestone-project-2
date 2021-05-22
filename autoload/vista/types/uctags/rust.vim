@@ -19,4 +19,14 @@ let s:types.kinds = {
 
 let s:types.sro = '::'
 
-let s:types.kind2sc
+let s:types.kind2scope = {
+    \ 'n' : 'module',
+    \ 's' : 'struct',
+    \ 'i' : 'interface',
+    \ 'c' : 'implementation',
+    \ 'f' : 'function',
+    \ 'g' : 'enum',
+    \ 'P' : 'method',
+    \ }
+
+let s:types.
