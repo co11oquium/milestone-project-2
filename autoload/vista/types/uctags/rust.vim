@@ -9,4 +9,7 @@ let s:types.kinds = {
     \ 'c': {'long' : 'implementation',  'fold' : 0, 'stl' : 0},
     \ 'f': {'long' : 'function',        'fold' : 0, 'stl' : 1},
     \ 'g': {'long' : 'enum',            'fold' : 0, 'stl' : 1},
-    \ 't'
+    \ 't': {'long' : 'type alias',      'fold' : 0, 'stl' : 1},
+    \ 'v': {'long' : 'global variable', 'fold' : 0, 'stl' : 1},
+    \ 'M': {'long' : 'macro',           'fold' : 0, 'stl' : 1},
+    \ 'm': {'long' : 'struct 
