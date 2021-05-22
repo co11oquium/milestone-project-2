@@ -12,4 +12,11 @@ let s:types.kinds = {
     \ 't': {'long' : 'type alias',      'fold' : 0, 'stl' : 1},
     \ 'v': {'long' : 'global variable', 'fold' : 0, 'stl' : 1},
     \ 'M': {'long' : 'macro',           'fold' : 0, 'stl' : 1},
-    \ 'm': {'long' : 'struct 
+    \ 'm': {'long' : 'struct field',    'fold' : 0, 'stl' : 1},
+    \ 'e': {'long' : 'enum variant',    'fold' : 0, 'stl' : 1},
+    \ 'P': {'long' : 'method',          'fold' : 0, 'stl' : 1}
+    \ }
+
+let s:types.sro = '::'
+
+let s:types.kind2sc
