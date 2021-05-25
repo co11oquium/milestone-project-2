@@ -29,4 +29,14 @@ let s:types.kind2scope = {
     \ 'P' : 'method',
     \ }
 
-let s:types.
+let s:types.scope2kind = {
+    \ 'module'        : 'n',
+    \ 'struct'        : 's',
+    \ 'interface'     : 'i',
+    \ 'implementation': 'c',
+    \ 'function'      : 'f',
+    \ 'enum'          : 'g',
+    \ 'method'        : 'P',
+    \ }
+
+l
