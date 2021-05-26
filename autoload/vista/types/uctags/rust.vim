@@ -39,4 +39,4 @@ let s:types.scope2kind = {
     \ 'method'        : 'P',
     \ }
 
-l
+let g:vista#types#uctags#rust# = s:types
