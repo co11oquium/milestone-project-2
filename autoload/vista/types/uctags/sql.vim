@@ -7,4 +7,7 @@ let s:types = {}
 
 let s:types.lang = 'sql'
 
-let s:types.kin
+let s:types.kinds = {
+    \ 'P': {'long' : 'packages',               'fold' : 1, 'stl' : 1},
+    \ 'd': {'long' : 'prototypes',             'fold' : 0, 'stl' : 1},
+    \ 'c': {'long' : 'cursors',                'fold' : 0, 'stl' : 
