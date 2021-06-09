@@ -20,4 +20,8 @@ let s:types.kinds = {
     \ 'T': {'long' : 'triggers',               'fold' : 0, 'stl' : 1},
     \ 'v': {'long' : 'variables',              'fold' : 0, 'stl' : 1},
     \ 'i': {'long' : 'indexes',                'fold' : 0, 'stl' : 1},
-    \ 'e': {'long' : 'events',                 'fold' : 0, 's
+    \ 'e': {'long' : 'events',                 'fold' : 0, 'stl' : 1},
+    \ 'U': {'long' : 'publications',           'fold' : 0, 'stl' : 1},
+    \ 'R': {'long' : 'services',               'fold' : 0, 'stl' : 1},
+    \ 'D': {'long' : 'domains',                'fold' : 0, 'stl' : 1},
+    \ 'V': {'long' : 'vi
