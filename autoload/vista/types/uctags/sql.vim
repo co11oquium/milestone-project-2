@@ -17,4 +17,7 @@ let s:types.kinds = {
     \ 'p': {'long' : 'procedures',             'fold' : 0, 'stl' : 1},
     \ 's': {'long' : 'subtypes',               'fold' : 0, 'stl' : 1},
     \ 't': {'long' : 'tables',                 'fold' : 0, 'stl' : 1},
-    \ 'T': {'long' : 'triggers',             
+    \ 'T': {'long' : 'triggers',               'fold' : 0, 'stl' : 1},
+    \ 'v': {'long' : 'variables',              'fold' : 0, 'stl' : 1},
+    \ 'i': {'long' : 'indexes',                'fold' : 0, 'stl' : 1},
+    \ 'e': {'long' : 'events',                 'fold' : 0, 's
