@@ -14,4 +14,7 @@ let s:types.kinds = {
     \ 'f': {'long' : 'functions',              'fold' : 0, 'stl' : 1},
     \ 'E': {'long' : 'record fields',          'fold' : 0, 'stl' : 1},
     \ 'L': {'long' : 'block label',            'fold' : 0, 'stl' : 1},
-    \ 'p': {'lo
+    \ 'p': {'long' : 'procedures',             'fold' : 0, 'stl' : 1},
+    \ 's': {'long' : 'subtypes',               'fold' : 0, 'stl' : 1},
+    \ 't': {'long' : 'tables',                 'fold' : 0, 'stl' : 1},
+    \ 'T': {'long' : 'triggers',             
