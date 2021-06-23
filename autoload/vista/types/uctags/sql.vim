@@ -24,4 +24,7 @@ let s:types.kinds = {
     \ 'U': {'long' : 'publications',           'fold' : 0, 'stl' : 1},
     \ 'R': {'long' : 'services',               'fold' : 0, 'stl' : 1},
     \ 'D': {'long' : 'domains',                'fold' : 0, 'stl' : 1},
-    \ 'V': {'long' : 'vi
+    \ 'V': {'long' : 'views',                  'fold' : 0, 'stl' : 1},
+    \ 'n': {'long' : 'synonyms',               'fold' : 0, 'stl' : 1},
+    \ 'x': {'long' : 'MobiLink Table Scripts', 'fold' : 0, 'stl' : 1},
+    \ 'y': {'long' : 'MobiLink Conn Scrip
