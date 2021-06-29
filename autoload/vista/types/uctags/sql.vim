@@ -27,4 +27,8 @@ let s:types.kinds = {
     \ 'V': {'long' : 'views',                  'fold' : 0, 'stl' : 1},
     \ 'n': {'long' : 'synonyms',               'fold' : 0, 'stl' : 1},
     \ 'x': {'long' : 'MobiLink Table Scripts', 'fold' : 0, 'stl' : 1},
-    \ 'y': {'long' : 'MobiLink Conn Scrip
+    \ 'y': {'long' : 'MobiLink Conn Scripts',  'fold' : 0, 'stl' : 1},
+    \ 'z': {'long' : 'MobiLink Properties',    'fold' : 0, 'stl' : 1}
+    \ }
+
+let g:vista#types#uctags#sql# = s:types
