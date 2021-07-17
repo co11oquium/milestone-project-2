@@ -8,4 +8,7 @@ let s:types.kinds = {
     \ 'i': {'long' : 'includes',       'fold' : 1, 'stl' : 0},
     \ 'p': {'long' : 'parts',          'fold' : 0, 'stl' : 1},
     \ 'c': {'long' : 'chapters',       'fold' : 0, 'stl' : 1},
-    \ 's': {'long' : 's
+    \ 's': {'long' : 'sections',       'fold' : 0, 'stl' : 1},
+    \ 'u': {'long' : 'subsections',    'fold' : 0, 'stl' : 1},
+    \ 'b': {'long' : 'subsubsections', 'fold' : 0, 'stl' : 1},
+    \ 'P': {'long' : 'paragraphs',     'fold' : 0, 'stl
