@@ -11,4 +11,8 @@ let s:types.kinds = {
     \ 's': {'long' : 'sections',       'fold' : 0, 'stl' : 1},
     \ 'u': {'long' : 'subsections',    'fold' : 0, 'stl' : 1},
     \ 'b': {'long' : 'subsubsections', 'fold' : 0, 'stl' : 1},
-    \ 'P': {'long' : 'paragraphs',     'fold' : 0, 'stl
+    \ 'P': {'long' : 'paragraphs',     'fold' : 0, 'stl' : 0},
+    \ 'G': {'long' : 'subparagraphs',  'fold' : 0, 'stl' : 0},
+    \ 'l': {'long' : 'labels',         'fold' : 0, 'stl' : 0},
+    \ 'f': {'long' : 'frame',          'fold' : 0, 'stl' : 0},
+    \ 'g': {'long' : 'subframe',
