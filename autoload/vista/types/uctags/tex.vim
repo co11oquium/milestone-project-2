@@ -15,4 +15,15 @@ let s:types.kinds = {
     \ 'G': {'long' : 'subparagraphs',  'fold' : 0, 'stl' : 0},
     \ 'l': {'long' : 'labels',         'fold' : 0, 'stl' : 0},
     \ 'f': {'long' : 'frame',          'fold' : 0, 'stl' : 0},
-    \ 'g': {'long' : 'subframe',
+    \ 'g': {'long' : 'subframe',       'fold' : 0, 'stl' : 0}
+    \ }
+
+let s:types.sro = '""'
+
+let s:types.kind2scope = {
+    \ 'p' : 'part',
+    \ 'c' : 'chapter',
+    \ 's' : 'section',
+    \ 'u' : 'subsection',
+    \ 'b' : 'subsubsection',
+    \ 'f' : 'frame',
