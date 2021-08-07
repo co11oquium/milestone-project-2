@@ -36,4 +36,10 @@ let s:types.scope2kind = {
     \ 'section'       : 's',
     \ 'subsection'    : 'u',
     \ 'subsubsection' : 'b',
-    \ 'frame'         : 
+    \ 'frame'         : 'f',
+    \ 'subframe'      : 'g'
+    \ }
+
+let s:types.sort = 0
+
+let g:vista#types#uctags#tex# = s:types
