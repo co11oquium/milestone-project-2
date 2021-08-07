@@ -27,3 +27,13 @@ let s:types.kind2scope = {
     \ 'u' : 'subsection',
     \ 'b' : 'subsubsection',
     \ 'f' : 'frame',
+    \ 'g' : 'subframe'
+    \ }
+
+let s:types.scope2kind = {
+    \ 'part'          : 'p',
+    \ 'chapter'       : 'c',
+    \ 'section'       : 's',
+    \ 'subsection'    : 'u',
+    \ 'subsubsection' : 'b',
+    \ 'frame'         : 
