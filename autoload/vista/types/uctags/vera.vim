@@ -16,4 +16,11 @@ let s:types.kinds = {
     \ 'm': {'long' : 'members',     'fold' : 0, 'stl' : 1},
     \ 'f': {'long' : 'functions',   'fold' : 0, 'stl' : 1},
     \ 's': {'long' : 'signals',     'fold' : 0, 'stl' : 0},
-    \ 't': {'long' 
+    \ 't': {'long' : 'tasks',       'fold' : 0, 'stl' : 1},
+    \ 'v': {'long' : 'variables',   'fold' : 0, 'stl' : 0},
+    \ 'p': {'long' : 'programs',    'fold' : 0, 'stl' : 1}
+    \ }
+
+let s:types.sro        = '.' " Nesting doesn't seem to be possible
+
+let 
