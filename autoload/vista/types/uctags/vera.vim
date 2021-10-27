@@ -23,4 +23,16 @@ let s:types.kinds = {
 
 let s:types.sro        = '.' " Nesting doesn't seem to be possible
 
-let 
+let s:types.kind2scope = {
+    \ 'g' : 'enum',
+    \ 'c' : 'class',
+    \ 'v' : 'virtual'
+    \ }
+
+let s:types.scope2kind = {
+    \ 'enum'      : 'g',
+    \ 'class'     : 'c',
+    \ 'virtual'   : 'v'
+    \ }
+
+let g:vista#types#uctags#ve
