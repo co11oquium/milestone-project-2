@@ -35,4 +35,4 @@ let s:types.scope2kind = {
     \ 'virtual'   : 'v'
     \ }
 
-let g:vista#types#uctags#ve
+let g:vista#types#uctags#vera# = s:types
