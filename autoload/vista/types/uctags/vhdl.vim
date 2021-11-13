@@ -16,4 +16,4 @@ let s:types.kinds = {
     \ 'p': {'long' : 'procedures', 'fold' : 0, 'stl' : 1}
     \ }
 
-let g:vista#types#uctags
+let g:vista#types#uctags#vhdl# = s:types
