@@ -7,4 +7,7 @@ let s:types.lang = 'vhdl'
 
 let s:types.kinds = {
     \ 'P': {'long' : 'packages',   'fold' : 1, 'stl' : 0},
- 
+    \ 'c': {'long' : 'constants',  'fold' : 0, 'stl' : 0},
+    \ 't': {'long' : 'types',      'fold' : 0, 'stl' : 1},
+    \ 'T': {'long' : 'subtypes',   'fold' : 0, 'stl' : 1},
+    \ 'r': {'long' : 'records',    'fold
