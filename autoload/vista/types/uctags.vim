@@ -7,4 +7,8 @@ let s:language_opt = {
       \ 'beta'       : ['beta'       , 'fsv']           ,
       \ 'c'          : ['c'          , 'dgsutvf']       ,
       \ 'cpp'        : ['c++'        , 'nvdtcgsuf']     ,
-      \ 'cs'         : ['c#'         , 'dtncEgsipm
+      \ 'cs'         : ['c#'         , 'dtncEgsipm']    ,
+      \ 'cobol'      : ['cobol'      , 'dfgpPs']        ,
+      \ 'delphi'     : ['pascal'     , 'fp']            ,
+      \ 'dosbatch'   : ['dosbatch'   , 'lv']            ,
+      \ 'eiffel'     : ['eiffel'     , 'c
