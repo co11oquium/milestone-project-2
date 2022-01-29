@@ -11,4 +11,9 @@ let s:language_opt = {
       \ 'cobol'      : ['cobol'      , 'dfgpPs']        ,
       \ 'delphi'     : ['pascal'     , 'fp']            ,
       \ 'dosbatch'   : ['dosbatch'   , 'lv']            ,
-      \ 'eiffel'     : ['eiffel'     , 'c
+      \ 'eiffel'     : ['eiffel'     , 'cf']            ,
+      \ 'erlang'     : ['erlang'     , 'drmf']          ,
+      \ 'expect'     : ['tcl'        , 'cfp']           ,
+      \ 'fortran'    : ['fortran'    , 'pbceiklmntvfs'] ,
+      \ 'go'         : ['go'         , 'fctv']          ,
+     
