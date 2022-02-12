@@ -19,4 +19,8 @@ let s:language_opt = {
       \ 'html'       : ['html'       , 'af']            ,
       \ 'java'       : ['java'       , 'pcifm']         ,
       \ 'javascript' : ['javascript' , 'f']             ,
-      \ 'lisp'       : ['lisp'       , 'f'] 
+      \ 'lisp'       : ['lisp'       , 'f']             ,
+      \ 'lua'        : ['lua'        , 'f']             ,
+      \ 'make'       : ['make'       , 'm']             ,
+      \ 'matlab'     : ['matlab'     , 'f']             ,
+      \ 'ocaml'      : ['
