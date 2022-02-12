@@ -16,4 +16,7 @@ let s:language_opt = {
       \ 'expect'     : ['tcl'        , 'cfp']           ,
       \ 'fortran'    : ['fortran'    , 'pbceiklmntvfs'] ,
       \ 'go'         : ['go'         , 'fctv']          ,
-     
+      \ 'html'       : ['html'       , 'af']            ,
+      \ 'java'       : ['java'       , 'pcifm']         ,
+      \ 'javascript' : ['javascript' , 'f']             ,
+      \ 'lisp'       : ['lisp'       , 'f'] 
