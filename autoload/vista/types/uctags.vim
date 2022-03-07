@@ -23,4 +23,8 @@ let s:language_opt = {
       \ 'lua'        : ['lua'        , 'f']             ,
       \ 'make'       : ['make'       , 'm']             ,
       \ 'matlab'     : ['matlab'     , 'f']             ,
-      \ 'ocaml'      : ['
+      \ 'ocaml'      : ['ocaml'      , 'cmMvtfCre']     ,
+      \ 'pascal'     : ['pascal'     , 'fp']            ,
+      \ 'perl'       : ['perl'       , 'clps']          ,
+      \ 'php'        : ['php'        , 'cdvf']          ,
+      \ 'python'
