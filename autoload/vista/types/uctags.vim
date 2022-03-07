@@ -27,4 +27,7 @@ let s:language_opt = {
       \ 'pascal'     : ['pascal'     , 'fp']            ,
       \ 'perl'       : ['perl'       , 'clps']          ,
       \ 'php'        : ['php'        , 'cdvf']          ,
-      \ 'python'
+      \ 'python'     : ['python'     , 'cmf']           ,
+      \ 'rexx'       : ['rexx'       , 's']             ,
+      \ 'ruby'       : ['ruby'       , 'cfFm']          ,
+      \ 'rust'       : ['rust'       , 'fgsmct
