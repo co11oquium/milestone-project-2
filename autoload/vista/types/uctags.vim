@@ -30,4 +30,8 @@ let s:language_opt = {
       \ 'python'     : ['python'     , 'cmf']           ,
       \ 'rexx'       : ['rexx'       , 's']             ,
       \ 'ruby'       : ['ruby'       , 'cfFm']          ,
-      \ 'rust'       : ['rust'       , 'fgsmct
+      \ 'rust'       : ['rust'       , 'fgsmcti']     ,
+      \ 'scheme'     : ['scheme'     , 'sf']            ,
+      \ 'sh'         : ['sh'         , 'f']             ,
+      \ 'csh'        : ['sh'         , 'f']             ,
+      \ 'zsh'        : 
