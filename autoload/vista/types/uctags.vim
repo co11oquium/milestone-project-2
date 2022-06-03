@@ -34,4 +34,8 @@ let s:language_opt = {
       \ 'scheme'     : ['scheme'     , 'sf']            ,
       \ 'sh'         : ['sh'         , 'f']             ,
       \ 'csh'        : ['sh'         , 'f']             ,
-      \ 'zsh'        : 
+      \ 'zsh'        : ['sh'         , 'f']             ,
+      \ 'scala'      : ['scala'      , 'ctTmlp']        ,
+      \ 'slang'      : ['slang'      , 'nf']            ,
+      \ 'sml'        : ['sml'        , 'ecsrtvf']       ,
+      \ 'sql'        
