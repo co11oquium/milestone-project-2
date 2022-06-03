@@ -38,4 +38,8 @@ let s:language_opt = {
       \ 'scala'      : ['scala'      , 'ctTmlp']        ,
       \ 'slang'      : ['slang'      , 'nf']            ,
       \ 'sml'        : ['sml'        , 'ecsrtvf']       ,
-      \ 'sql'        
+      \ 'sql'        : ['sql'        , 'cFPrstTvfp']    ,
+      \ 'tex'        : ['tex'        , 'ipcsubPGl']     ,
+      \ 'tcl'        : ['tcl'        , 'cfmp']          ,
+      \ 'vera'       : ['vera'       , 'cdefgmpPtTvx']  ,
+      \ 'verilog'
