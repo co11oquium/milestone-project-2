@@ -42,4 +42,7 @@ let s:language_opt = {
       \ 'tex'        : ['tex'        , 'ipcsubPGl']     ,
       \ 'tcl'        : ['tcl'        , 'cfmp']          ,
       \ 'vera'       : ['vera'       , 'cdefgmpPtTvx']  ,
-      \ 'verilog'
+      \ 'verilog'    : ['verilog'    , 'mcPertwpvf']    ,
+      \ 'vhdl'       : ['vhdl'       , 'PctTrefp']      ,
+      \ 'vim'        : ['vim'        , 'avf']           ,
+      \ 'yacc'       : ['yacc'       , 'l']             ,
