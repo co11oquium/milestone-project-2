@@ -46,3 +46,11 @@ let s:language_opt = {
       \ 'vhdl'       : ['vhdl'       , 'PctTrefp']      ,
       \ 'vim'        : ['vim'        , 'avf']           ,
       \ 'yacc'       : ['yacc'       , 'l']             ,
+      \ }
+
+let s:language_opt = map(s:language_opt,
+      \ 'printf(''--language-force=%s --%s-types=%s'', v:val[0], v:val[0], v:val[1])')
+
+function! vista#types#uctags#KindsFor(filetype) abort
+  return get(s:language_opt, a:filetype, '')
+end
