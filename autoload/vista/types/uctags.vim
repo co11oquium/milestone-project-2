@@ -53,4 +53,4 @@ let s:language_opt = map(s:language_opt,
 
 function! vista#types#uctags#KindsFor(filetype) abort
   return get(s:language_opt, a:filetype, '')
-end
+endfunction
