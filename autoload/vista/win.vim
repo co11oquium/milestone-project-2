@@ -13,4 +13,10 @@ function! vista#win#CloseFloating() abort
   endif
 endfunction
 
-function! vista#win#FloatingDispl
+function! vista#win#FloatingDisplay(...) abort
+  if s:has_popup
+    call call('vista#popup#DisplayAt', a:000)
+  elseif s:has_floating_win
+    call call('vista#floating#DisplayAt', a:000)
+  else
+    call vista#error#Need('neovim compiled wi
