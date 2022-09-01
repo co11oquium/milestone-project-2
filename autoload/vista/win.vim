@@ -19,4 +19,11 @@ function! vista#win#FloatingDisplay(...) abort
   elseif s:has_floating_win
     call call('vista#floating#DisplayAt', a:000)
   else
-    call vista#error#Need('neovim compiled wi
+    call vista#error#Need('neovim compiled with floating window support or vim compiled with popup feature')
+  endif
+endfunction
+
+" Show the folded content if in a closed fold.
+function! vista#win#ShowFoldedDetailInFloatingIsOk() abort
+  if foldclosed('.') != -1
+    if s:has_floati
