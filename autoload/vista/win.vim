@@ -26,4 +26,10 @@ endfunction
 " Show the folded content if in a closed fold.
 function! vista#win#ShowFoldedDetailInFloatingIsOk() abort
   if foldclosed('.') != -1
-    if s:has_floati
+    if s:has_floating_win || s:has_popup
+      let foldclosed_end = foldclosedend('.')
+      let curlnum = line('.')
+      let lines = getbufline(g:vista.bufnr, curlnum, foldclosed_end)
+
+      if s:has_floating_win
+        call vista#floating#Dis
