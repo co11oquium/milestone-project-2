@@ -32,4 +32,16 @@ function! vista#win#ShowFoldedDetailInFloatingIsOk() abort
       let lines = getbufline(g:vista.bufnr, curlnum, foldclosed_end)
 
       if s:has_floating_win
-        call vista#floating#Dis
+        call vista#floating#DisplayRawAt(curlnum, lines)
+      elseif s:has_popup
+        call vista#popup#DisplayRawAt(curlnum, lines)
+      endif
+
+      return v:true
+    endif
+  endif
+  return v:false
+endfunction
+
+function! vista#win#FloatingDisplayOrPeek(lnum, tag) abort
+  if s:has_floating_w
