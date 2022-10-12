@@ -52,4 +52,11 @@ function! vista#win#FloatingDisplayOrPeek(lnum, tag) abort
 endfunction
 
 " call Run in the window win unsilently, unlike win_execute() which uses
+" silent by default.
 "
+" CocAction only fetch symbols for current document, no way for specify the other at the moment.
+" workaround for #52
+"
+" see also #71
+"
+" NOTE: a:winnr is winnr, not winid. Ref https://github.com/liuchengxu/vim-clap/issu
