@@ -44,4 +44,12 @@ function! vista#win#ShowFoldedDetailInFloatingIsOk() abort
 endfunction
 
 function! vista#win#FloatingDisplayOrPeek(lnum, tag) abort
-  if s:has_floating_w
+  if s:has_floating_win || s:has_popup
+    call vista#win#FloatingDisplay(a:lnum, a:tag)
+  else
+    call vista#source#PeekSymbol(a:lnum, a:tag)
+  endif
+endfunction
+
+" call Run in the window win unsilently, unlike win_execute() which uses
+"
