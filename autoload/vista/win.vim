@@ -59,4 +59,13 @@ endfunction
 "
 " see also #71
 "
-" NOTE: a:winnr is winnr, not winid. Ref https://github.com/liuchengxu/vim-clap/issu
+" NOTE: a:winnr is winnr, not winid. Ref https://github.com/liuchengxu/vim-clap/issues/371
+function! vista#win#Execute(winnr, Run, ...) abort
+  if winnr() != a:winnr
+    noautocmd execute a:winnr.'wincmd w'
+    let l:switch_back = 1
+  endif
+
+  call call(a:Run, a:000)
+
+  if exists('l:switch_back')
