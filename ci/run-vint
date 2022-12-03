@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -eu
+
+image=liuchengxu/vista.vim
+
+exit_code=0
+
+docker_flags=(--rm -v "$PWD:/testplugin" -v "$PWD/test:/home" -w /testplugin "$image")
+
+echo '------------------
