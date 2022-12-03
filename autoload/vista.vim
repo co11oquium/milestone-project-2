@@ -184,3 +184,51 @@ function! s:HandleArguments(fst, snd) abort
       let finder = ''
       let executive = a:snd
     else
+      return vista#error#InvalidFinderArgument()
+    endif
+  endif
+  call vista#finder#Dispatch(v:false, finder, executive)
+endfunction
+
+" Main entrance to interact with vista.vim
+function! vista#(bang, ...) abort
+  " `:Vista focus` should be handled before updating the source buffer info.
+  if a:0 == 1 && a:1 ==# 'focus'
+    call vista#sidebar#ToggleFocus()
+    return
+  endif
+
+  let [bufnr, winnr, fname, fpath] = [bufnr('%'), winnr(), expand('%'), expand('%:p')]
+  let g:vista.source.winid = win_getid()
+  call vista#source#Update(bufnr, winnr, fname, fpath)
+
+  if a:bang
+    if a:0 == 0
+      call vista#sidebar#Close()
+      return
+    elseif a:0 == 1
+      if a:1 ==# '!'
+        let g:vista.lnum = line('.')
+        call vista#sidebar#Toggle()
+        return
+      else
+        return vista#error#Expect('Vista!!')
+      endif
+    else
+      return vista#error#Expect('Vista![!]')
+    endif
+  endif
+
+  if a:0 == 0
+    call vista#sidebar#Open()
+    return
+  endif
+
+  if a:0 == 1
+    call s:HandleSingleArgument(a:1)
+  elseif a:0 == 2
+    call s:HandleArguments(a:1, a:2)
+  elseif a:0 > 0
+    return vista#error#('Too many arguments for Vista')
+  endif
+endfunction
