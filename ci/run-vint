@@ -15,4 +15,9 @@ echo 'Vint warnings/errors follow:'
 echo
 
 set -o pipefail
-docker run -a stdout "${docker_flags[@]}" vint -w . || exit_c
+docker run -a stdout "${docker_flags[@]}" vint -w . || exit_code=$?
+set +o pipefail
+
+echo
+
+exit $exit_code
