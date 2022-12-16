@@ -437,3 +437,146 @@ g:vista_disable_statusline                            *g:vista_disable_statuslin
   Vista.vim has a builtin statusline renderer, which may cause some problems
   if you use other statusline plugins at the same time. Hence it's disabled
   by default if you have installed airline or lightline.
+
+g:vista_highlight_whole_line                        *g:vista_highlight_whole_line*
+
+  Type: |Number|
+  Default: `0`
+
+  By default vista.vim will try to highlight the tag precisely in the vista window.
+  Set this to `1` to always higlight the whole line.
+
+
+g:vista_floating_border                      *g:vista_floating_border*
+
+  Type: |String|
+  Default: `none`
+
+  See `nvim_open_win` for border options that may be used.
+
+g:vista_floating_delay                                    *g:vista_floating_delay*
+
+  Type: |Number|
+  Default: 100
+
+  Given any integer, this option controls the number of milliseconds before
+  vista will show a popup or floating win of the target line context near the cursor.
+
+g:vista#renderer#enable_icon                        *g:vista#renderer#enable_icon*
+
+  Type: |Number|
+  Default: `exists('g:vista#renderer#icons') || exists('g:airline_powerline_fonts')`
+
+  Add pretty symbols for the kind of tags or LSP symbols.
+
+g:vista#renderer#enable_kind                        g:vista#renderer#enable_kind
+
+  Type: |Number|
+  Default: !g:vista#renderer#enable_icon
+
+  Show textual kind of tags or LSP symbols.
+
+g:vista_enable_markdown_extension              *g:vista_enable_markdown_extension*
+
+  Type: |Number|
+  Default: `1`
+
+  Use markdown extension instead of the ctags executive.
+
+g:vista_ignore_kinds                                        *g:vista_ignore_kinds*
+
+  Type: |List|
+  Default: `[]`
+
+  Ignore some kinds of tags or symbols.
+
+g:vista#renderer#icons                                    *g:vista#renderer#icons*
+
+  Type: |Dict|
+  Default: See `autoload/vista/renderer.vim` .
+
+g:vista#renderer#ctags                                    *g:vista#renderer#ctags*
+
+  Type: |String|
+  Default: `default`
+
+  Options:
+
+  `default` - render tags in nested structure.
+  `kind`    - render tags kindwise.
+  `line`    - render tags linewise.
+
+g:vista_no_mappings                                          *g:vista_no_mappings*
+
+  Type: |Number|
+  Default: `0`
+
+  Disable the default mappings.
+
+g:vista_log_file                                                *g:vista_log_file*
+
+  Type: |String|
+  Default: `Undefined`
+
+  Enable the logging feature for debugging. For example:
+  >
+  let g:vista_log_file = expand('~/vista.log')
+<
+  Note: Do not enable this unless you want to debug vista.vim as this may have
+  a side effect on the performance!
+
+g:vista_enable_centering_jump                      *g:vista_enable_centering_jump*
+
+  Type: |Number|
+  Default: `1`
+
+  Set this variable to `0` to not make the line at center of window when you
+  jump to the tag.
+
+--------------------------------------------------------------------------------
+Key Mappings                                                  *vista-key-mappings*
+
+The following mappings are defined by default in the vista window.
+
+<CR>          - jump to the tag under the cursor.
+<2-LeftMouse> - Same as <CR>.
+p             - preview the tag under the context via the floating window if
+                it's avaliable.
+s             - sort the symbol alphabetically or the location they are
+                declared.
+q             - close the vista window.
+
+You can add a mapping to `/` in order to open the vista finder for
+searching by adding the following autocommand in your vimrc:
+ >
+ autocmd FileType vista,vista_kind nnoremap <buffer> <silent> \
+             / :<c-u>call vista#finder#fzf#Run()<CR>
+
+--------------------------------------------------------------------------------
+Highlights                                                      *vista-highlights*
+
+Use |:hi| command in your vimrc to change the default highlights in vista.vim,
+e.g.:
+  >
+  hi VistaFloat ctermbg=237 guibg=#3a3a3a
+
+VistaFloat                                                            *VistaFloat*
+
+  Default: `hi default link VistaFloat Pmenu`
+
+  The highlight used for the floating window.
+
+================================================================================
+CONTRIBUTING                                                  *vista-contributing*
+
+Vista.vim is still in beta, if you run into any trouble or have any sugguestions,
+please file an issue (https://github.com/liuchengxu/vista.vim/issues/new).
+
+================================================================================
+LICENSE                                                            *vista-license*
+
+MIT
+
+Copyright (c) 2019 Liu-Cheng Xu
+
+vim:tw=78:ts=2:sts=2:sw=2:ft=help:norl:
