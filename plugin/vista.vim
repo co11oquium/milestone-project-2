@@ -18,3 +18,7 @@ let g:vista_icon_indent = get(g:, 'vista_icon_indent', ['└ ', '│ '])
 let g:vista_fold_toggle_icons = get(g:, 'vista_fold_toggle_icons', ['▼', '▶'])
 let g:vista_update_on_text_changed = get(g:, 'vista_update_on_text_changed', 0)
 let g:vista_update_on_text_changed_delay = get(g:, 'vista_update_on_text_changed_delay', 500)
+let g:vista_echo_cursor = get(g:, 'vista_echo_cursor', 1)
+let g:vista_no_mappings = get(g:, 'vista_no_mappings', 0)
+let g:vista_stay_on_open = get(g:, 'vista_stay_on_open', 1)
+let g:vista_close_on_jump =  ge
