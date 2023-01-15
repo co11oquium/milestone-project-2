@@ -15,4 +15,6 @@ let g:vista_sidebar_position = get(g:, 'vista_sidebar_position', 'vertical botri
 let g:vista_blink = get(g:, 'vista_blink', [2, 100])
 let g:vista_top_level_blink = get(g:, 'vista_top_level_blink', [2, 100])
 let g:vista_icon_indent = get(g:, 'vista_icon_indent', ['└ ', '│ '])
-let g:vista_fold_toggle_icons = get(g:
+let g:vista_fold_toggle_icons = get(g:, 'vista_fold_toggle_icons', ['▼', '▶'])
+let g:vista_update_on_text_changed = get(g:, 'vista_update_on_text_changed', 0)
+let g:vista_update_on_text_changed_delay = get(g:, 'vista_update_on_text_changed_delay', 500)
