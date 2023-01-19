@@ -21,4 +21,7 @@ let g:vista_update_on_text_changed_delay = get(g:, 'vista_update_on_text_changed
 let g:vista_echo_cursor = get(g:, 'vista_echo_cursor', 1)
 let g:vista_no_mappings = get(g:, 'vista_no_mappings', 0)
 let g:vista_stay_on_open = get(g:, 'vista_stay_on_open', 1)
-let g:vista_close_on_jump =  ge
+let g:vista_close_on_jump =  get(g:, 'vista_close_on_jump', 0)
+let g:vista_close_on_fzf_select =  get(g:, 'vista_close_on_fzf_select', 0)
+let g:vista_disable_statusline = get(g:, 'vista_disable_statusline', exists('g:loaded_airline') || exists('g:loaded_lightline'))
+let 
