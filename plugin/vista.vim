@@ -24,4 +24,7 @@ let g:vista_stay_on_open = get(g:, 'vista_stay_on_open', 1)
 let g:vista_close_on_jump =  get(g:, 'vista_close_on_jump', 0)
 let g:vista_close_on_fzf_select =  get(g:, 'vista_close_on_fzf_select', 0)
 let g:vista_disable_statusline = get(g:, 'vista_disable_statusline', exists('g:loaded_airline') || exists('g:loaded_lightline'))
-let 
+let g:vista_cursor_delay = get(g:, 'vista_cursor_delay', 400)
+let g:vista_ignore_kinds = get(g:, 'vista_ignore_kinds', [])
+let g:vista_executive_for = get(g:, 'vista_executive_for', {})
+let g:vista_default_executive =
