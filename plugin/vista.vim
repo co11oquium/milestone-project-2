@@ -32,4 +32,6 @@ let g:vista_enable_centering_jump = get(g:, 'vista_enable_centering_jump', 1)
 let g:vista_find_nearest_method_or_function_delay = get(g:, 'vista_find_nearest_method_or_function_delay', 300)
 " Select the absolute nearest function when using binary search.
 let g:vista_find_absolute_nearest_method_or_function = get(g:, 'vista_find_absolute_nearest_method_or_function', 0)
-let g:vista_fzf_preview = get(g:, 'vista_fzf
+let g:vista_fzf_preview = get(g:, 'vista_fzf_preview', [])
+
+command! -bang -nargs=* -bar -complete=custom,vista#util#Complete Vista call vista#(<bang>0, <f-args>)
