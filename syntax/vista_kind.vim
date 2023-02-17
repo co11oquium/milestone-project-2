@@ -20,4 +20,9 @@ execute 'syntax match VistaPrefix' '/\('.s:pattern.'\)/' 'contained'
 
 syntax match VistaScope /^\S.*$/ contains=VistaPrefix,VistaChildrenNr,VistaIcon
 syntax match VistaColon /:/ contained
-syntax match VistaL
+syntax match VistaLineNr /:\d*$/ contains=VistaColon
+syntax region VistaTag start="^" end="$" contains=VistaLineNr,VistaScope,VistaPrefix
+
+hi default link VistaBracket     Identifier
+hi default link VistaChildrenNr  Number
+hi default link VistaScope       Fun
