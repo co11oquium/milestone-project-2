@@ -15,4 +15,9 @@ syntax match VistaChildrenNr /\[\d*\]$/ contains=VistaBracket
 let s:prefixes = filter(
       \ map(copy(g:vista_icon_indent), 'vista#util#Trim(v:val)'),
       \ '!empty(v:val)')
-let s:pattern = j
+let s:pattern = join(s:prefixes, '\|')
+execute 'syntax match VistaPrefix' '/\('.s:pattern.'\)/' 'contained'
+
+syntax match VistaScope /^\S.*$/ contains=VistaPrefix,VistaChildrenNr,VistaIcon
+syntax match VistaColon /:/ contained
+syntax match VistaL
