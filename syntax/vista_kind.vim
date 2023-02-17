@@ -25,4 +25,9 @@ syntax region VistaTag start="^" end="$" contains=VistaLineNr,VistaScope,VistaPr
 
 hi default link VistaBracket     Identifier
 hi default link VistaChildrenNr  Number
-hi default link VistaScope       Fun
+hi default link VistaScope       Function
+hi default link VistaTag         Keyword
+hi default link VistaPrefix      String
+hi default link VistaLineNr      LineNr
+hi default link VistaColon       SpecialKey
+hi default link VistaIcon        StorageClass
