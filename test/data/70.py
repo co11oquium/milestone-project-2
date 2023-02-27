@@ -1,3 +1,4 @@
 class Foo:
     class Bar:
-        def baz(se
+        def baz(self):
+            pass
